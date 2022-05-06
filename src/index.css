@@ -57,8 +57,14 @@ form {
   top: 35%;
 }
 
-.FraseMotivacional {
+.frase1 {
   position: absolute;
-  left: 45%;
-  top: 35%;
+  left: 35%;
+  top: 0%;
+}
+
+.frase2 {
+  position: absolute;
+  left: 42%;
+  top: 95%;
 }

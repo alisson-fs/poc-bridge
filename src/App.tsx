@@ -1,13 +1,15 @@
 import React from 'react';
 import './App.css';
 import { Formulario } from './components/Formulario';
+import { FraseMotivacional } from './components/FraseMotivacional';
+import { FrasesMotivacionaisContextModel, FRASE_1, FRASE_2 } from './model';
 
-const FraseMotivacionalContext = React.createContext("");
+export const FraseMotivacionalContext = React.createContext<FrasesMotivacionaisContextModel>({frase1: "", frase2: ""});
 
 function App() {
 
   return (
-    <FraseMotivacionalContext.Provider value="É hora de esquecer os erros do passado e começar a planejar os erros do futuro."> 
+    <FraseMotivacionalContext.Provider value={{frase1: FRASE_1, frase2: FRASE_2}}> 
       <FraseMotivacional />
       <h2>Calculadora de IMC</h2><br />
       <Formulario/>
@@ -15,12 +17,5 @@ function App() {
   );
 }
 
-function FraseMotivacional() {
-  return (
-    <FraseMotivacionalContext.Consumer>
-      {value => <p>{value}</p>}
-    </FraseMotivacionalContext.Consumer>
-  )
-}
 
 export default App;
