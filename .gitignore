@@ -1,0 +1,37 @@
+.settings
+*.class
+*.project
+*.orig
+**/.classpath
+**/.factorypath
+
+.vscode/launch.json
+
+# Package Files #
+*.war
+
+**/node_modules
+**/npm-debug.log
+**/target
+**/node
+**/build
+
+**/logs
+*.log
+*.bak
+
+# Webstorm / IntelliJ
+.idea
+*.iml
+out/
+
+# VSCode-Java
+.sts4-cache
+
+# VSCode Debug Configs
+frontend/.vscode/launch.json
+.vscode/
+
+**/.apt_generated/
+**/.apt_generated_tests/
+/.metadata/
