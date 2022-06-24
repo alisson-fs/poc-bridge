@@ -9,9 +9,15 @@ interface CampoTextoProps {
 export function CampoTexto(props: CampoTextoProps) {
   return (
     <>
-      <label htmlFor={props.for}>{props.text}</label>
-      <br />
-      <Field name={props.name} component="input" />
+      <Field name={props.name} >
+        {({ input, meta }) => (
+          <div>
+            <label htmlFor={props.for}>{props.text}</label><br />
+            <input {...input} type="text"/>
+            {meta.error && meta.touched && <span style={{color:"red"}}>{meta.error}</span>}
+          </div>
+        )}
+      </Field>
       <br />
     </>
   );

@@ -8,16 +8,10 @@ interface IMCFormModel {
   peso: number;
 }
 
+type ErrorObject<DataType> = { [key in keyof DataType]?: ErrorObject<DataType[key]> | string };
+
 export function Formulario() {
   function handleSubmit(values: IMCFormModel) {
-    // var n_altura = 0;
-    // var n_peso = 0;
-    // if (values.altura !== "") {
-    //   n_altura = Number(values.altura);
-    // }
-    // if (values.peso !== "") {
-    //   n_peso = Number(values.peso);
-    // }
     setResultado(calcularImc(values.altura, values.peso));
   }
 
@@ -40,7 +34,34 @@ export function Formulario() {
 
   return (
     <div className="formIMC">
-      <Form<IMCFormModel> onSubmit={handleSubmit} render={renderForm} />
+      <Form<IMCFormModel>
+        onSubmit={handleSubmit}
+        render={renderForm}
+        validate={values => {
+          const errors: ErrorObject<IMCFormModel> = {};
+          if (!values.altura) {
+            errors.altura = "Campo obrigatório.";
+          } else {
+            if (isNaN(values.altura)) {
+              errors.altura = "Deve ser um número."
+            }
+            if (values.altura <= 0) {
+              errors.altura = "Deve ser um valor maior do que 0."
+            }
+          }
+          if (!values.peso) {
+            errors.peso = "Campo obrigatório."
+          } else {
+            if (isNaN(values.peso)) {
+              errors.peso = "Deve ser um número."
+            }
+            if (values.peso <= 0) {
+              errors.peso = "Deve ser um valor maior do que 0."
+            }
+          }
+          return errors
+        }}
+      />
       {resultado !== 0 && (
         <div className="resultado">
           <label>IMC:</label>
