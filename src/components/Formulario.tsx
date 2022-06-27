@@ -2,13 +2,13 @@ import { useState } from "react";
 import { CampoTexto } from "./CampoTexto";
 import { Form, FormRenderProps } from "react-final-form";
 import { calcularImc } from "../util";
+import { ErrorObject } from "../model";
+import { validate } from "../validate";
 
-interface IMCFormModel {
+export interface IMCFormModel {
   altura: number;
   peso: number;
 }
-
-type ErrorObject<DataType> = { [key in keyof DataType]?: ErrorObject<DataType[key]> | string };
 
 export function Formulario() {
   function handleSubmit(values: IMCFormModel) {
@@ -38,28 +38,9 @@ export function Formulario() {
         onSubmit={handleSubmit}
         render={renderForm}
         validate={values => {
-          const errors: ErrorObject<IMCFormModel> = {};
-          if (!values.altura) {
-            errors.altura = "Campo obrigatório.";
-          } else {
-            if (isNaN(values.altura)) {
-              errors.altura = "Deve ser um número."
-            }
-            if (values.altura <= 0) {
-              errors.altura = "Deve ser um valor maior do que 0."
-            }
-          }
-          if (!values.peso) {
-            errors.peso = "Campo obrigatório."
-          } else {
-            if (isNaN(values.peso)) {
-              errors.peso = "Deve ser um número."
-            }
-            if (values.peso <= 0) {
-              errors.peso = "Deve ser um valor maior do que 0."
-            }
-          }
-          return errors
+          var errors: ErrorObject<IMCFormModel> = {};
+          errors = validate(errors, values);
+          return errors;
         }}
       />
       {resultado !== 0 && (
