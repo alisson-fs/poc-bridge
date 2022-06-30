@@ -1,7 +1,3 @@
-export type ErrorObject<DataType> = {
-  [key in keyof DataType]?: ErrorObject<DataType[key]> | string;
-};
-
 export interface FrasesMotivacionaisContextModel {
   frase1: string;
   frase2: string;
