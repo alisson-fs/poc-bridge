@@ -1,9 +1,11 @@
 import { IMCFormModel } from "../components/Formulario";
-import { ErrorObject } from "../validation/model";
-
-const REQUIRED = "Campo obrigatório.";
-const ONLY_NUMBERS = "Deve ser um número.";
-const GREATER_THAN_ZERO = "Deve ser um valor maior do que 0.";
+import { ALTURA, PESO } from "../model";
+import {
+  ErrorObject,
+  REQUIRED,
+  ONLY_NUMBERS,
+  GREATER_THAN,
+} from "../validation/model";
 
 function validateRequired(errors: any, values: any, name: string) {
   if (!values[name]) {
@@ -26,7 +28,7 @@ function validateGreaterThan(
   limit: number
 ) {
   if (values[name] && values[name] <= limit) {
-    errors[name] = GREATER_THAN_ZERO;
+    errors[name] = GREATER_THAN + limit;
   }
   return errors;
 }
@@ -35,19 +37,16 @@ function validateAltura(
   errors: ErrorObject<IMCFormModel>,
   values: IMCFormModel
 ) {
-  errors = validateRequired(errors, values, "altura");
-  errors = validateOnlyNumbers(errors, values, "altura");
-  errors = validateGreaterThan(errors, values, "altura", 0);
+  errors = validateRequired(errors, values, ALTURA);
+  errors = validateOnlyNumbers(errors, values, ALTURA);
+  errors = validateGreaterThan(errors, values, ALTURA, 0);
   return errors;
 }
 
-function validatePeso(
-  errors: ErrorObject<IMCFormModel>, 
-  values: IMCFormModel
-) {
-  errors = validateRequired(errors, values, "peso");
-  errors = validateOnlyNumbers(errors, values, "peso");
-  errors = validateGreaterThan(errors, values, "peso", 0);
+function validatePeso(errors: ErrorObject<IMCFormModel>, values: IMCFormModel) {
+  errors = validateRequired(errors, values, PESO);
+  errors = validateOnlyNumbers(errors, values, PESO);
+  errors = validateGreaterThan(errors, values, PESO, 0);
   return errors;
 }
 

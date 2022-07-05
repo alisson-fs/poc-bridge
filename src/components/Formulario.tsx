@@ -4,6 +4,7 @@ import { Form, FormRenderProps } from "react-final-form";
 import { calcularImc } from "../util";
 import { ErrorObject } from "../validation/model";
 import { validate } from "../validation/validate";
+import { ALTURA, PESO } from "../model";
 
 export interface IMCFormModel {
   altura: number;
@@ -17,15 +18,12 @@ export function Formulario() {
 
   const [resultado, setResultado] = useState<number>(0);
 
-  const altura = "altura";
-  const peso = "peso";
-
   const renderForm = (formProps: FormRenderProps<IMCFormModel>) => {
     const { handleSubmit } = formProps;
     return (
       <form onSubmit={handleSubmit}>
-        <CampoTexto for={altura} name={altura} text="Altura (cm):" />
-        <CampoTexto for={peso} name={peso} text="Peso (kg):" />
+        <CampoTexto for={ALTURA} name={ALTURA} text="Altura (cm):" />
+        <CampoTexto for={PESO} name={PESO} text="Peso (kg):" />
         <button type="submit">Calcular</button>
         <br />
       </form>
