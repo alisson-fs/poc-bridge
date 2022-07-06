@@ -7,15 +7,15 @@ import {
   GREATER_THAN,
 } from "../validation/model";
 
-function validateRequired(errors: any, values: any, name: string) {
+function validateRequired<Type>(errors: ErrorObject<Type>, values: Type, name: keyof Type) {
   if (!values[name]) {
     errors[name] = REQUIRED;
   }
   return errors;
 }
 
-function validateOnlyNumbers(errors: any, values: any, name: string) {
-  if (values[name] && isNaN(values[name])) {
+function validateOnlyNumbers<Type>(errors: ErrorObject<Type>, values: Type, name: keyof Type) {
+  if (values[name] && isNaN(Number(values[name]))) {
     errors[name] = ONLY_NUMBERS;
   }
   return errors;
