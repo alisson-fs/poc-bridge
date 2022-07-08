@@ -1,23 +1,27 @@
-import { ChangeEvent } from "react";
+import { Field } from "react-final-form";
 
 interface CampoTextoProps {
   for: string;
   text: string;
-  id: string;
   name: string;
-  onChange(formValue: string): void
 }
 
 export function CampoTexto(props: CampoTextoProps) {
-
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    props.onChange(event.currentTarget.value)
-  }
-
   return (
     <>
-      <label htmlFor={props.for}>{props.text}</label><br />
-      <input type="text" id={props.id} name={props.name} onChange={handleChange}/><br />
+      <Field name={props.name}>
+        {({ input, meta }) => (
+          <div>
+            <label htmlFor={props.for}>{props.text}</label>
+            <br />
+            <input {...input} type="text" />
+            {meta.error && meta.touched && (
+              <span style={{ color: "red" }}>{meta.error}</span>
+            )}
+          </div>
+        )}
+      </Field>
+      <br />
     </>
   );
 }

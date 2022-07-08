@@ -1,60 +1,51 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { CampoTexto } from "./CampoTexto";
+import { Form, FormRenderProps } from "react-final-form";
+import { calcularImc } from "../util";
+import { ErrorObject } from "../validation/model";
+import { validate } from "../validation/validate";
+import { ALTURA, PESO } from "../model";
 
-function calcularImc(altura: number, peso: number) {
-  return (
-    peso / ((altura/100) ** 2)
-  );
-}
-
-interface IMCFormModel {
-  altura: string
-  peso: string
+export interface IMCFormModel {
+  altura: number;
+  peso: number;
 }
 
 export function Formulario() {
-
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    var n_altura = 0;
-    var n_peso = 0;
-    if (imcFormValues.altura !== "") {
-      n_altura = Number(imcFormValues.altura);
-    }
-    if (imcFormValues.peso !== "") {
-      n_peso = Number(imcFormValues.peso);
-    } 
-    var resultado = "";
-    if (n_altura !== 0 && n_peso !== 0) {
-      resultado = String(calcularImc(n_altura, n_peso))
-    }
-    handleChangeResultado(resultado)
+  function handleSubmit(values: IMCFormModel) {
+    setResultado(calcularImc(values.altura, values.peso));
   }
 
-  const [imcFormValues, setImcFormValues] = useState<IMCFormModel>({altura: "", peso: ""})
-  const [resultado, setResultado] = useState<string>()
+  const [resultado, setResultado] = useState<number>(0);
 
-  const handleChangeAltura = (altura: string) => {
-    setImcFormValues({altura, peso: imcFormValues.peso})
-  }
+  const renderForm = (formProps: FormRenderProps<IMCFormModel>) => {
+    const { handleSubmit } = formProps;
+    return (
+      <form onSubmit={handleSubmit}>
+        <CampoTexto for={ALTURA} name={ALTURA} text="Altura (cm):" />
+        <CampoTexto for={PESO} name={PESO} text="Peso (kg):" />
+        <button type="submit">Calcular</button>
+        <br />
+      </form>
+    );
+  };
 
-  const handleChangePeso = (peso: string) => {
-    setImcFormValues({altura: imcFormValues.altura, peso})
-  }
-
-  const handleChangeResultado = (resultado: string) => {
-    setResultado(resultado)
-  }
-
-  const altura = "altura";
-  const peso = "peso";
   return (
-    <form onSubmit={handleSubmit}>
-      <CampoTexto for={altura} id={altura} name={altura} text="Altura (cm):" onChange={handleChangeAltura} />
-      <CampoTexto for={peso} id={peso} name={peso} text="Peso (kg):" onChange={handleChangePeso} />
-      <button type="submit">Calcular</button><br />
-      <label>IMC:</label>
-      <p>{resultado}</p>
-    </form>
+    <div className="formIMC">
+      <Form<IMCFormModel>
+        onSubmit={handleSubmit}
+        render={renderForm}
+        validate={(values) => {
+          var errors: ErrorObject<IMCFormModel> = {};
+          return validate(errors, values);
+        }}
+      />
+      {resultado !== 0 && (
+        <div className="resultado">
+          <label>IMC:</label>
+          <p>{resultado}</p>
+        </div>
+      )}
+    </div>
   );
 }
