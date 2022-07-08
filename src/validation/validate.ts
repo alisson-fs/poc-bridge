@@ -21,13 +21,13 @@ function validateOnlyNumbers<Type>(errors: ErrorObject<Type>, values: Type, name
   return errors;
 }
 
-function validateGreaterThan(
-  errors: any,
-  values: any,
-  name: string,
+function validateGreaterThan<Type>(
+  errors: ErrorObject<Type>,
+  values: Type,
+  name: keyof Type,
   limit: number
 ) {
-  if (values[name] && values[name] <= limit) {
+  if (values[name] && Number(values[name]) <= limit) {
     errors[name] = GREATER_THAN + limit;
   }
   return errors;
