@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { CampoTexto } from "./CampoTexto";
+import { CampoTexto } from "../CampoTexto";
 import { Form, FormRenderProps } from "react-final-form";
-import { calcularImc } from "../util";
-import { ErrorObject } from "../validation/model";
-import { validate } from "../validation/validate";
-import { ALTURA, PESO } from "../model";
+import { calcularImc } from "../../util";
+import { ALTURA, PESO } from "./model";
+import { validateIMC } from "./validate";
 
 export interface IMCFormModel {
   altura: number;
@@ -35,10 +34,7 @@ export function Formulario() {
       <Form<IMCFormModel>
         onSubmit={handleSubmit}
         render={renderForm}
-        validate={(values) => {
-          var errors: ErrorObject<IMCFormModel> = {};
-          return validate(errors, values);
-        }}
+        validate={validateIMC}
       />
       {resultado !== 0 && (
         <div className="resultado">

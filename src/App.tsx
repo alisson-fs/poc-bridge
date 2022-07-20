@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Formulario } from "./components/Formulario";
+import { Formulario } from "./components/Fomulario/Formulario";
 import { FraseMotivacional } from "./components/FraseMotivacional";
 import { FrasesMotivacionaisContextModel, FRASE_1, FRASE_2 } from "./model";
 
