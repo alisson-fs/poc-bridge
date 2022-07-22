@@ -6,8 +6,8 @@ import { ALTURA, PESO } from "./model";
 import { validateIMC } from "./validate";
 
 export interface IMCFormModel {
-  altura: number;
-  peso: number;
+  altura?: number;
+  peso?: number;
 }
 
 export function Formulario() {
