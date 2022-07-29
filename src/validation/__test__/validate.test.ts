@@ -12,12 +12,14 @@ describe("validate", () => {
       errors = validateRequired(errors, values, ALTURA);
       expect(errors.altura).toBe(REQUIRED);
     });
+
     it("quando o campo for undefined deve retornar erro", () => {
       var errors: ErrorObject<IMCFormModel> = {};
       const values: IMCFormModel = {};
       errors = validateRequired(errors, values, ALTURA);
       expect(errors.altura).toBe(REQUIRED);
     });
+
     it("quando o campo seja valido nao deve retornar erro", () => {
       var errors: ErrorObject<IMCFormModel> = {};
       const values: IMCFormModel = { altura: "173" };
@@ -33,6 +35,7 @@ describe("validate", () => {
       errors = validateOnlyNumbers(errors, values, ALTURA);
       expect(errors.altura).toBe(ONLY_NUMBERS);
     });
+
     it("quando o campo for um numero nao deve retornar erro", () => {});
       var errors: ErrorObject<IMCFormModel> = {};
       const values: IMCFormModel = { altura: "173" };
@@ -47,6 +50,7 @@ describe("validate", () => {
       errors = validateGreaterThan(errors, values, ALTURA, 0);
       expect(errors.altura).toBe(GREATER_THAN + "0");
     });
+
     it("quando o campo for igual ao valor definidonao deve retornar erro", () => {
       var errors: ErrorObject<IMCFormModel> = {};
       const limit = "0" 
@@ -54,6 +58,7 @@ describe("validate", () => {
       errors = validateGreaterThan(errors, values, ALTURA, 0);
       expect(errors.altura).toBe(GREATER_THAN + limit);
     });
+    
     it("quando o campo for maior do que o valor definidonao nao deve retornar erro", () => {
       var errors: ErrorObject<IMCFormModel> = {};
       const values: IMCFormModel = { altura: "1" };
