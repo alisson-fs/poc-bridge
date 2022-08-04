@@ -1,8 +1,8 @@
 import { ErrorObject } from "../../../validation/model";
 import { IMCFormModel } from "../Formulario";
 import * as validators from "../../../validation/validate";
-import * as validatorIMC from "../validate";
 import { validateAltura, validateIMC, validatePeso } from "../validate";
+import * as validatorIMC from "../validate";
 
 const ALTURA = "altura";
 const PESO = "peso";
@@ -91,19 +91,19 @@ describe("validate", () => {
       );
     });
   });
-
+  
   describe("validateIMC", () => {
     it("quando validateIMC for chamado deve chamar o validateAltura", () => {
       const values: IMCFormModel = { altura: "173", peso: "70" };
       const spy = jest.spyOn(validatorIMC, "validateAltura");
-      validatorIMC.validateIMC(values);
+      validateIMC(values);
       expect(spy).toHaveBeenCalled();
     });
 
     it("quando validateIMC for chamado deve chamar o validatePeso", () => {
       const values: IMCFormModel = { altura: "173", peso: "70" };
       const spy = jest.spyOn(validatorIMC, "validatePeso");
-      validatorIMC.validateIMC(values);
+      validateIMC(values);
       expect(spy).toHaveBeenCalled();
     });
   });
