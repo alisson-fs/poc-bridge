@@ -6,13 +6,13 @@ import { ALTURA, PESO } from "./model";
 import { validateIMC } from "./validate";
 
 export interface IMCFormModel {
-  altura: number;
-  peso: number;
+  altura?: string;
+  peso?: string;
 }
 
 export function Formulario() {
   function handleSubmit(values: IMCFormModel) {
-    setResultado(calcularImc(values.altura, values.peso));
+    setResultado(calcularImc(Number(values.altura), Number(values.peso)));
   }
 
   const [resultado, setResultado] = useState<number>(0);
