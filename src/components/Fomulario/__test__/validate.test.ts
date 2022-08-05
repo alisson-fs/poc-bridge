@@ -1,104 +1,55 @@
 import { ErrorObject } from "../../../validation/model";
 import { IMCFormModel } from "../Formulario";
 import * as validators from "../../../validation/validate";
-import { validateAltura, validateIMC, validatePeso } from "../validate";
-import * as validatorIMC from "../validate";
+import { validateAltura, validatePeso } from "../validate";
 
 const ALTURA = "altura";
 const PESO = "peso";
+const LIMIT = 0;
+const errors: ErrorObject<IMCFormModel> = {};
 
 describe("validate", () => {
   describe("validateAltura", () => {
+    const values: IMCFormModel = { altura: "173" };
+
     it("quando validateAltura for chamado, deve chamar o validateRequired com os parametros esperados", () => {
-      const values: IMCFormModel = { altura: "173" };
       const spy = jest.spyOn(validators, "validateRequired");
-      var errors: ErrorObject<IMCFormModel> = {};
       validateAltura(errors, values);
-      expect(spy).toHaveBeenCalled();
-      expect(spy).toHaveBeenCalledWith(
-        expect.anything(),
-        expect.anything(),
-        ALTURA
-      );
+      expect(spy).toHaveBeenCalledWith(errors, values, ALTURA);
     });
 
     it("quando validateAltura for chamado, deve chamar o validateOnlyNumbers com os parametros esperados", () => {
-      var errors: ErrorObject<IMCFormModel> = {};
-      const values: IMCFormModel = { altura: "173" };
       const spy = jest.spyOn(validators, "validateOnlyNumbers");
       validateAltura(errors, values);
-      expect(spy).toHaveBeenCalled();
-      expect(spy).toHaveBeenCalledWith(
-        expect.anything(),
-        expect.anything(),
-        ALTURA
-      );
+      expect(spy).toHaveBeenCalledWith(errors, values, ALTURA);
     });
 
     it("quando validateAltura for chamado, deve chamar o validateGreaterThan com os parametros esperados", () => {
-      var errors: ErrorObject<IMCFormModel> = {};
-      const values: IMCFormModel = { altura: "173" };
       const spy = jest.spyOn(validators, "validateGreaterThan");
       validateAltura(errors, values);
-      expect(spy).toHaveBeenCalled();
-      expect(spy).toHaveBeenCalledWith(
-        expect.anything(),
-        expect.anything(),
-        ALTURA,
-        0
-      );
+      expect(spy).toHaveBeenCalledWith(errors, values, ALTURA, LIMIT);
     });
   });
 
   describe("validatePeso", () => {
+    const values: IMCFormModel = { peso: "70" };
+
     it("quando validatePeso for chamado, deve chamar o validateRequired com os parametros esperados", () => {
-      var errors: ErrorObject<IMCFormModel> = {};
-      const values: IMCFormModel = { peso: "70" };
       const spy = jest.spyOn(validators, "validateRequired");
       validatePeso(errors, values);
-      expect(spy).toHaveBeenCalled();
-      expect(spy).toHaveBeenCalledWith(
-        expect.anything(),
-        expect.anything(),
-        PESO
-      );
+      expect(spy).toHaveBeenCalledWith(errors, values, PESO);
     });
 
     it("quando validatePeso for chamado, deve chamar o validateOnlyNumbers com os parametros esperados", () => {
-      var errors: ErrorObject<IMCFormModel> = {};
-      const values: IMCFormModel = { peso: "70" };
       const spy = jest.spyOn(validators, "validateOnlyNumbers");
       validatePeso(errors, values);
-      expect(spy).toHaveBeenCalled();
-      expect(spy).toHaveBeenCalledWith(
-        expect.anything(),
-        expect.anything(),
-        PESO
-      );
+      expect(spy).toHaveBeenCalledWith(errors, values, PESO);
     });
 
     it("quando validatePeso for chamado, deve chamar o validateGreaterThan com os parametros esperados", () => {
-      var errors: ErrorObject<IMCFormModel> = {};
-      const values: IMCFormModel = { peso: "70" };
       const spy = jest.spyOn(validators, "validateGreaterThan");
       validatePeso(errors, values);
-      expect(spy).toHaveBeenCalled();
-      expect(spy).toHaveBeenCalledWith(
-        expect.anything(),
-        expect.anything(),
-        PESO,
-        0
-      );
-    });
-  });
-
-  describe("validateIMC", () => {
-    it("quando validateIMC for chamado, deve chamar o validateAltura", () => {
-      jest.mock("validatorIMC");
-      const validateAlturaSpy = jest.fn().mockImplementation(validatorIMC.validateAltura);
-      const values: IMCFormModel = { altura: "173", peso: "70" };
-      validateIMC(values);
-      expect(validateAlturaSpy).toHaveBeenCalled();
+      expect(spy).toHaveBeenCalledWith(errors, values, PESO, LIMIT);
     });
   });
 });
