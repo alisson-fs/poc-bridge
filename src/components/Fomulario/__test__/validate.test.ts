@@ -9,7 +9,7 @@ const PESO = "peso";
 
 describe("validate", () => {
   describe("validateAltura", () => {
-    it("quando validateAltura for chamado deve chamar o validateRequired com os parametros esperados", () => {
+    it("quando validateAltura for chamado, deve chamar o validateRequired com os parametros esperados", () => {
       const values: IMCFormModel = { altura: "173" };
       const spy = jest.spyOn(validators, "validateRequired");
       var errors: ErrorObject<IMCFormModel> = {};
@@ -22,7 +22,7 @@ describe("validate", () => {
       );
     });
 
-    it("quando validateAltura for chamado deve chamar o validateOnlyNumbers com os parametros esperados", () => {
+    it("quando validateAltura for chamado, deve chamar o validateOnlyNumbers com os parametros esperados", () => {
       var errors: ErrorObject<IMCFormModel> = {};
       const values: IMCFormModel = { altura: "173" };
       const spy = jest.spyOn(validators, "validateOnlyNumbers");
@@ -35,7 +35,7 @@ describe("validate", () => {
       );
     });
 
-    it("quando validateAltura for chamado deve chamar o validateGreaterThan com os parametros esperados", () => {
+    it("quando validateAltura for chamado, deve chamar o validateGreaterThan com os parametros esperados", () => {
       var errors: ErrorObject<IMCFormModel> = {};
       const values: IMCFormModel = { altura: "173" };
       const spy = jest.spyOn(validators, "validateGreaterThan");
@@ -51,7 +51,7 @@ describe("validate", () => {
   });
 
   describe("validatePeso", () => {
-    it("quando validatePeso for chamado deve chamar o validateRequired com os parametros esperados", () => {
+    it("quando validatePeso for chamado, deve chamar o validateRequired com os parametros esperados", () => {
       var errors: ErrorObject<IMCFormModel> = {};
       const values: IMCFormModel = { peso: "70" };
       const spy = jest.spyOn(validators, "validateRequired");
@@ -64,7 +64,7 @@ describe("validate", () => {
       );
     });
 
-    it("quando validatePeso for chamado deve chamar o validateOnlyNumbers com os parametros esperados", () => {
+    it("quando validatePeso for chamado, deve chamar o validateOnlyNumbers com os parametros esperados", () => {
       var errors: ErrorObject<IMCFormModel> = {};
       const values: IMCFormModel = { peso: "70" };
       const spy = jest.spyOn(validators, "validateOnlyNumbers");
@@ -77,7 +77,7 @@ describe("validate", () => {
       );
     });
 
-    it("quando validatePeso for chamado deve chamar o validateGreaterThan com os parametros esperados", () => {
+    it("quando validatePeso for chamado, deve chamar o validateGreaterThan com os parametros esperados", () => {
       var errors: ErrorObject<IMCFormModel> = {};
       const values: IMCFormModel = { peso: "70" };
       const spy = jest.spyOn(validators, "validateGreaterThan");
@@ -91,20 +91,14 @@ describe("validate", () => {
       );
     });
   });
-  
-  describe("validateIMC", () => {
-    it("quando validateIMC for chamado deve chamar o validateAltura", () => {
-      const values: IMCFormModel = { altura: "173", peso: "70" };
-      const spy = jest.spyOn(validatorIMC, "validateAltura");
-      validateIMC(values);
-      expect(spy).toHaveBeenCalled();
-    });
 
-    it("quando validateIMC for chamado deve chamar o validatePeso", () => {
+  describe("validateIMC", () => {
+    it("quando validateIMC for chamado, deve chamar o validateAltura", () => {
+      jest.mock("validatorIMC");
+      const validateAlturaSpy = jest.fn().mockImplementation(validatorIMC.validateAltura);
       const values: IMCFormModel = { altura: "173", peso: "70" };
-      const spy = jest.spyOn(validatorIMC, "validatePeso");
       validateIMC(values);
-      expect(spy).toHaveBeenCalled();
+      expect(validateAlturaSpy).toHaveBeenCalled();
     });
   });
 });
