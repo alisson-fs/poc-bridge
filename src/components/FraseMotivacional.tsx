@@ -1,3 +1,4 @@
+import { Text } from "bold-ui";
 import { useContext } from "react";
 import { FraseMotivacionalContext } from "../App";
 
@@ -5,8 +6,20 @@ export function FraseMotivacional() {
   const { frase1, frase2 } = useContext(FraseMotivacionalContext);
   return (
     <>
-      <p className="frase1">{frase1}</p>
-      <p className="frase2">{frase2}</p>
+      <Text
+        fontSize={1}
+        fontWeight={"bold"}
+        style={{ position: "absolute", left: "35%", top: "3%" }}
+      >
+        {frase1}
+      </Text>
+      <Text
+        fontSize={1}
+        fontWeight={"bold"}
+        style={{ position: "absolute", left: "42%", top: "95%" }}
+      >
+        {frase2}
+      </Text>
     </>
   );
 }

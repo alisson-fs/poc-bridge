@@ -1,3 +1,4 @@
+import { Heading, VFlow } from "bold-ui";
 import React from "react";
 import "./App.css";
 import { Formulario } from "./components/Fomulario/Formulario";
@@ -16,9 +17,10 @@ function App() {
       value={{ frase1: FRASE_1, frase2: FRASE_2 }}
     >
       <FraseMotivacional />
-      <h2>Calculadora de IMC</h2>
-      <br />
-      <Formulario />
+      <VFlow style={{ position: "absolute", left: "45%", top: "30%" }}>
+        <Heading level={2}>Calculadora de IMC</Heading>
+        <Formulario />
+      </VFlow>
     </FraseMotivacionalContext.Provider>
   );
 }
