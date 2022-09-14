@@ -4,6 +4,7 @@ import { Form, FormRenderProps } from "react-final-form";
 import { calcularImc } from "../../util";
 import { ALTURA, PESO } from "./model";
 import { validateIMC } from "./validate";
+import { Button, HFlow, Text, VFlow } from "bold-ui";
 
 export interface IMCFormModel {
   altura?: string;
@@ -21,27 +22,28 @@ export function Formulario() {
     const { handleSubmit } = formProps;
     return (
       <form onSubmit={handleSubmit}>
-        <CampoTexto for={ALTURA} name={ALTURA} text="Altura (cm):" />
-        <CampoTexto for={PESO} name={PESO} text="Peso (kg):" />
-        <button type="submit">Calcular</button>
-        <br />
+        <VFlow>
+          <CampoTexto for={ALTURA} name={ALTURA} label="Altura (cm):" />
+          <CampoTexto for={PESO} name={PESO} label="Peso (kg):" />
+          <Button onClick={handleSubmit}>Calcular</Button>
+        </VFlow>
       </form>
     );
   };
 
   return (
-    <div className="formIMC">
+    <VFlow>
       <Form<IMCFormModel>
         onSubmit={handleSubmit}
         render={renderForm}
         validate={validateIMC}
       />
       {resultado !== 0 && (
-        <div className="resultado">
-          <label>IMC:</label>
-          <p>{resultado}</p>
-        </div>
+        <HFlow>
+          <Text fontSize={1}>IMC:</Text>
+          <Text fontSize={1}>{resultado}</Text>
+        </HFlow>
       )}
-    </div>
+    </VFlow>
   );
 }
