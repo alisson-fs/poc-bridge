@@ -1,27 +1,23 @@
-import { Field } from "react-final-form";
+import { TextField } from "bold-ui";
+import React from "react";
+import { useField } from "react-final-form";
 
 interface CampoTextoProps {
   for: string;
-  text: string;
+  label: string;
   name: string;
 }
 
 export function CampoTexto(props: CampoTextoProps) {
+  const { name, label } = props
+  const { meta: { error }, input: { value, onChange } } = useField(name);
   return (
-    <>
-      <Field name={props.name}>
-        {({ input, meta }) => (
-          <div>
-            <label htmlFor={props.for}>{props.text}</label>
-            <br />
-            <input {...input} type="text" />
-            {meta.error && meta.touched && (
-              <span style={{ color: "red" }}>{meta.error}</span>
-            )}
-          </div>
-        )}
-      </Field>
-      <br />
-    </>
+    <TextField
+      label={label}
+      error={error}
+      value={value}
+      onChange={onChange}
+      required
+    />
   );
 }
