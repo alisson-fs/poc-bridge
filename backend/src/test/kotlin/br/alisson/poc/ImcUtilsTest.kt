@@ -26,7 +26,5 @@ class ImcUtilsTest {
         }
 
         assertEquals("A altura deve ser diferente de zero.", exception.message)
-
-
     }
 }
