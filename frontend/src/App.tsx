@@ -1,4 +1,4 @@
-import { Heading, VFlow } from "bold-ui";
+import { Heading, useTheme, VFlow } from "bold-ui";
 import React from "react";
 import "./App.css";
 import { Formulario } from "./components/Fomulario/Formulario";
@@ -12,12 +12,13 @@ export const FraseMotivacionalContext =
   });
 
 function App() {
+  const theme = useTheme()
   return (
     <FraseMotivacionalContext.Provider
       value={{ frase1: FRASE_1, frase2: FRASE_2 }}
     >
       <FraseMotivacional />
-      <VFlow style={{ position: "absolute", left: "45%", top: "30%" }}>
+      <VFlow style={{ position: "absolute", left: "45%", top: "30%", backgroundColor:theme.pallete.surface.main }}>
         <Heading level={2}>Calculadora de IMC</Heading>
         <Formulario />
       </VFlow>

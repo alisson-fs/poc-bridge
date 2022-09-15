@@ -1,5 +1,4 @@
 import { TextField } from "bold-ui";
-import React from "react";
 import { useField } from "react-final-form";
 
 interface CampoTextoProps {

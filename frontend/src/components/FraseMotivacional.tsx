@@ -1,7 +1,6 @@
 import { Text } from "bold-ui";
 import { useContext } from "react";
 import { FraseMotivacionalContext } from "../App";
-import React from "react";
 
 export function FraseMotivacional() {
   const { frase1, frase2 } = useContext(FraseMotivacionalContext);

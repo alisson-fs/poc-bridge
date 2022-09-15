@@ -25,7 +25,7 @@ export function Formulario() {
         <VFlow>
           <CampoTexto for={ALTURA} name={ALTURA} label="Altura (cm):" />
           <CampoTexto for={PESO} name={PESO} label="Peso (kg):" />
-          <Button onClick={handleSubmit}>Calcular</Button>
+          <Button onClick={handleSubmit} kind="primary">Calcular</Button>
         </VFlow>
       </form>
     );
