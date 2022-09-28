@@ -1,12 +1,15 @@
 package br.alisson.poc.controller
 
-import org.springframework.web.bind.annotation.GetMapping
+import br.alisson.poc.ImcUtils
+import br.alisson.poc.model.ImcDto
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class CalcularImcController {
-    @GetMapping("/calcularImc")
-    fun calcularImc(): String {
-        return "Hello World"
+    @PostMapping("/calcularImc")
+    fun calcularImc(@RequestBody values: ImcDto): Double {
+        return ImcUtils.calcular(values.altura, values.peso)
     }
 }
