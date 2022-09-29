@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { CampoTexto } from "../CampoTexto";
 import { Form, FormRenderProps } from "react-final-form";
-import { calcularImc } from "../../util";
 import { ALTURA, PESO } from "./model";
 import { validateIMC } from "./validate";
 import { Button, HFlow, Text, VFlow } from "bold-ui";
+import axios from "axios";
 
 export interface IMCFormModel {
   altura?: string;
@@ -13,7 +13,14 @@ export interface IMCFormModel {
 
 export function Formulario() {
   function handleSubmit(values: IMCFormModel) {
-    setResultado(calcularImc(Number(values.altura), Number(values.peso)));
+    axios
+      .post("http://localhost:8080/calcularImc", {
+        altura: values.altura,
+        peso: values.peso,
+      })
+      .then((response) => {
+        setResultado(Number(response.data));
+      });
   }
 
   const [resultado, setResultado] = useState<number>(0);
@@ -25,7 +32,9 @@ export function Formulario() {
         <VFlow>
           <CampoTexto for={ALTURA} name={ALTURA} label="Altura (cm):" />
           <CampoTexto for={PESO} name={PESO} label="Peso (kg):" />
-          <Button onClick={handleSubmit} kind="primary">Calcular</Button>
+          <Button onClick={handleSubmit} kind="primary">
+            Calcular
+          </Button>
         </VFlow>
       </form>
     );
