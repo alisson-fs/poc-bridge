@@ -15,16 +15,4 @@ class ImcUtilsTest {
 
         assertEquals(40.0, result)
     }
-
-    @Test
-    fun `calcular deve retornar uma excecao caso a altura seja zero`() {
-        val peso = 10.0
-        val altura = 0.0
-
-        val exception = assertThrows<IllegalArgumentException>{
-            calcular(altura, peso)
-        }
-
-        assertEquals("A altura deve ser diferente de zero.", exception.message)
-    }
 }
