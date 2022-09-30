@@ -3,7 +3,6 @@ package br.alisson.poc
 import br.alisson.poc.ImcUtils.Companion.calcular
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 
 class ImcUtilsTest {
     @Test
