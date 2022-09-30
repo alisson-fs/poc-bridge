@@ -14,10 +14,7 @@ export interface IMCFormModel {
 export function Formulario() {
   function handleSubmit(values: IMCFormModel) {
     axios
-      .post("http://localhost:8080/calcularImc", {
-        altura: values.altura,
-        peso: values.peso,
-      })
+      .post("http://localhost:8080/calcularImc", {...values})
       .then((response) => {
         setResultado(Number(response.data));
       });
