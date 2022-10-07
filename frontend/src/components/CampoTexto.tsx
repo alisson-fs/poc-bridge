@@ -8,14 +8,18 @@ interface CampoTextoProps {
 }
 
 export function CampoTexto(props: CampoTextoProps) {
-  const { name, label } = props
-  const { meta: { error }, input: { value, onChange } } = useField(name);
+  const { name, label } = props;
+  const {
+    meta: { error },
+    input: { value, onChange },
+  } = useField(name);
   return (
     <TextField
       label={label}
       error={error}
       value={value}
       onChange={onChange}
+      clearable={false}
       required
     />
   );
