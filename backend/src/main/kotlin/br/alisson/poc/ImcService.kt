@@ -13,7 +13,7 @@ class ImcService(private val repository: ImcRepository) {
         return imc.toString()
     }
 
-    fun mostrarTbImc(){
+    private fun mostrarTbImc(){
         val tbImc = repository.findAll().toString()
         println(tbImc)
     }
