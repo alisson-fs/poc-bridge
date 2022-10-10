@@ -1,4 +1,4 @@
-package br.alisson.poc;
+package br.alisson.poc.model;
 
 import java.time.Instant;
 import java.util.Date;
@@ -45,5 +45,9 @@ public class Imc {
 	@Override
 	public String toString() {
 		return String.format("IMC(co_imc=%s, nu_altura=%s, nu_peso=%s, nu_imc=%s, dt_calculo=%s", id, altura, peso, imc, dt_calculo);
+	}
+
+	@Override public boolean equals(Object obj) {
+		return super.equals(obj);
 	}
 }

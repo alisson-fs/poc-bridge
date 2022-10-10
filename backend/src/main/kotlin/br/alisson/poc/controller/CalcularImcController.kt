@@ -1,7 +1,6 @@
 package br.alisson.poc.controller
 
-import br.alisson.poc.ImcService
-import br.alisson.poc.ImcUtils
+import br.alisson.poc.service.ImcService
 import br.alisson.poc.model.ImcDto
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity

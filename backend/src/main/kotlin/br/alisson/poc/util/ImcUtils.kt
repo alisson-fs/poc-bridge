@@ -1,4 +1,4 @@
-package br.alisson.poc
+package br.alisson.poc.util
 
 import kotlin.math.pow
 
