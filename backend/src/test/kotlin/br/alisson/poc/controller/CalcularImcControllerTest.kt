@@ -2,7 +2,9 @@ package br.alisson.poc.controller
 
 import br.alisson.poc.service.ImcService
 import br.alisson.poc.model.ImcDto
+import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.never
 import com.nhaarman.mockitokotlin2.whenever
 import com.nhaarman.mockitokotlin2.verify
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -23,7 +25,6 @@ class CalcularImcControllerTest {
         controller = CalcularImcController(service)
     }
 
-
     @Test
     fun `calcularImc deve chamar o metodo calcular do ImcUtils quando altura e peso forem meior que zero`() {
         val altura = 100.0
@@ -42,6 +43,7 @@ class CalcularImcControllerTest {
     fun `calcularImc deve retornar erro quando altura for zero`() {
         val result = controller.calcularImc(ImcDto(altura = 0.0, peso = 10.0))
 
+        verify(service, never()).calcularPersistirImc(any(), any())
         assertEquals(responseEntityError, result)
     }
 
@@ -49,6 +51,7 @@ class CalcularImcControllerTest {
     fun `calcularImc deve retornar erro quando peso for zero`() {
         val result = controller.calcularImc(ImcDto(altura = 50.0, peso = 0.0))
 
+        verify(service, never()).calcularPersistirImc(any(), any())
         assertEquals(responseEntityError, result)
     }
 }
