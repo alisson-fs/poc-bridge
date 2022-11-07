@@ -8,7 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.ToString;
 
+@ToString
 @Entity
 @Table(name = "tb_imc")
 public class Imc {
@@ -38,7 +40,4 @@ public class Imc {
 		this.imc = imc;
 		this.dt_calculo = dt_calculo;
 	}
-
-	@Override
-	public String toString() {return String.format("IMC(co_imc=%s, nu_altura=%s, nu_peso=%s, nu_imc=%s, dt_calculo=%s", this.id, this.altura, this.peso, this.imc, this.dt_calculo);}
 }
