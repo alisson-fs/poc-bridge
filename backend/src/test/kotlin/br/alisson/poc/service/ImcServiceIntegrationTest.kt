@@ -12,7 +12,7 @@ import javax.persistence.EntityManager
 class ImcServiceIntegrationTest(@Autowired private val service: ImcService, @Autowired private val entityManager: EntityManager) {
 
     @Test
-    fun `calcularPersistirImc deve retornar o imc correto`() {
+    fun `calcularPersistirImc deve retornar o imc correto e persistir o resultado na tabela`() {
         val altura = 100.0
         val peso = 50.0
         val expected = "50.0"

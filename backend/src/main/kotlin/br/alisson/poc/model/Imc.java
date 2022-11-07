@@ -8,9 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @ToString
+@NoArgsConstructor
 @Entity
 @Table(name = "tb_imc")
 public class Imc {
@@ -31,8 +33,6 @@ public class Imc {
 
 	@Column(name = "dt_calculo", nullable = false)
 	private Instant dt_calculo;
-
-	protected Imc() {}
 
 	public Imc(Double altura, Double peso, Double imc, Instant dt_calculo) {
 		this.altura = altura;
