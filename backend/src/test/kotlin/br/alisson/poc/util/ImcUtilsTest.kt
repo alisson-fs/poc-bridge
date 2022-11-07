@@ -1,6 +1,6 @@
-package br.alisson.poc
+package br.alisson.poc.util
 
-import br.alisson.poc.ImcUtils.Companion.calcular
+import br.alisson.poc.util.ImcUtils.Companion.calcular
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
