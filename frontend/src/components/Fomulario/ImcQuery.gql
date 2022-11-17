@@ -1,0 +1,9 @@
+query Imc {
+    imc {
+        id,
+        altura,
+        peso,
+        imc,
+        dt_calculo
+    }
+}
