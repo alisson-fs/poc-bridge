@@ -1,5 +1,6 @@
 package br.alisson.poc.service
 
+import br.alisson.poc.model.Imc
 import br.alisson.poc.repository.ImcRepository
 import br.alisson.poc.util.ImcUtils
 import org.slf4j.LoggerFactory
