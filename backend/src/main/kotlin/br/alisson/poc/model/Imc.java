@@ -40,4 +40,20 @@ public class Imc {
 		this.imc = imc;
 		this.dt_calculo = dt_calculo;
 	}
+
+	public Double getAltura() {
+		return altura;
+	}
+
+	public Double getPeso() {
+		return peso;
+	}
+
+	public Double getImc() {
+		return imc;
+	}
+
+	public Instant getDt_calculo() {
+		return dt_calculo;
+	}
 }

@@ -2,28 +2,26 @@ package br.alisson.poc
 
 import br.alisson.poc.model.Imc
 import br.alisson.poc.util.ImcUtils
+import br.alisson.poc.util.ImcUtils.Companion.formatDate
 import graphql.kickstart.tools.GraphQLResolver
 import org.springframework.stereotype.Component
-import java.time.Instant
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
 
 @Component
 class ImcResolver: GraphQLResolver<Imc> {
 
-    fun altura(altura: Double): String {
-        return ImcUtils.formatUsToBr(altura)
+    fun altura(imc: Imc): String {
+        return ImcUtils.formatUsToBr(imc.altura)
     }
 
-    fun peso(peso: Double): String {
-        return ImcUtils.formatUsToBr(peso)
+    fun peso(imc: Imc): String {
+        return ImcUtils.formatUsToBr(imc.peso)
     }
 
-    fun imc(imc: Double): String {
-        return ImcUtils.formatUsToBr(imc)
+    fun imc(imc: Imc): String {
+        return ImcUtils.formatUsToBr(imc.imc)
     }
 
-    fun dt_calculo(dt_calculo: Instant): String {
-        return DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT).format(dt_calculo)
+    fun dt_calculo(imc: Imc): String {
+        return formatDate(imc.dt_calculo)
     }
 }
