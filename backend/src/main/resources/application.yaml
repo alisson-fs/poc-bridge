@@ -1,0 +1,14 @@
+logging:
+  level:
+    br.alisson.poc: DEBUG
+
+# SE DER RUIM NO GRAPHQL:
+#graphql:
+#  servlet:
+#    enabled: true
+#    mapping: /graphql
+#    cors-enabled: true
+#    cors:
+#      allowed-origins: "*"
+#      allowed-methods: "*"
+#      allowed-headers: "*"
