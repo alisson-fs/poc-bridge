@@ -7,9 +7,6 @@ import org.springframework.stereotype.Component
 
 @Component
 class ImcQueryResolver(private val repository: ImcRepository) : GraphQLQueryResolver {
-    fun helloWorld(): String {
-        return "Hello World"
-    }
 
     fun historico(): MutableIterable<Imc> {
         return repository.findAll()

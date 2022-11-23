@@ -1,0 +1,9 @@
+schema: '../backend/src/main/resources/**/*.graphqls'
+documents:
+  - 'src/**/*.gql'
+generates:
+  src/utils/__generated__/graphql.ts:
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'

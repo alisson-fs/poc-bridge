@@ -17,8 +17,7 @@ export function Formulario() {
       .post("http://localhost:8080/calcularImc", {...values})
       .then((response) => {
         setResultado(Number(response.data));
-      })
-      .catch((err) => console.log(err));
+      });
   }
 
   const [resultado, setResultado] = useState<number>(0);

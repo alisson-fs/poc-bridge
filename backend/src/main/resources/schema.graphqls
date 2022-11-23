@@ -7,6 +7,5 @@ type Imc {
 }
 
 type Query {
-    helloWorld: String
     historico: [Imc!]!
 }

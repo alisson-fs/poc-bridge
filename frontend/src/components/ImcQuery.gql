@@ -1,0 +1,9 @@
+query Imc {
+    historico {
+        id
+        altura
+        peso
+        imc
+        dt_calculo
+    }
+}
