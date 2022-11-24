@@ -3,7 +3,9 @@ import { Imc, useImcQuery } from "../utils/__generated__/graphql";
 import { ALTURA, PESO } from "./Fomulario/model";
 
 export function Historico() {
-  const { data } = useImcQuery();
+  const { data, loading } = useImcQuery();
+
+  console.log(data, loading)
 
   const renderAltura = (imc: Imc) => imc.altura;
   const renderPeso = (imc: Imc) => imc.peso;
@@ -35,7 +37,8 @@ export function Historico() {
             render: renderDataCalculo,
           },
         ]}
-        rows={data ? data.historico : []}
+        rows={data?.historico ?? []}
+        loading={loading}
       />
     </>
   );

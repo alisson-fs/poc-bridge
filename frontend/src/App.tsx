@@ -19,9 +19,9 @@ function App() {
       value={{ frase1: FRASE_1, frase2: FRASE_2 }}
     >
       <FraseMotivacional />
-      <VFlow style={{ position: "absolute", left: "45%", top: "30%", backgroundColor:theme.pallete.surface.main }}>
+      <VFlow style={{ position: "absolute", left: "30%", top: "30%", backgroundColor:theme.pallete.surface.main }}>
         <Heading level={2}>Calculadora de IMC</Heading>
-        <HFlow>
+        <HFlow hSpacing={5} alignItems="center">
           <Formulario />
           <Historico />
         </HFlow>
