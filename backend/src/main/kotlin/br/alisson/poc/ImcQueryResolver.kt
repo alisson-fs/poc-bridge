@@ -11,4 +11,8 @@ class ImcQueryResolver(private val repository: ImcRepository) : GraphQLQueryReso
     fun historico(): MutableIterable<Imc> {
         return repository.findAll()
     }
+
+    // fun historico(quantity: Int): MutableIterable<Imc> {
+    //     return repository.findWithQuantity(quantity)
+    // }
 }

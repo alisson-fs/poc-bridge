@@ -6,9 +6,7 @@ import {
 import { ALTURA, PESO } from "./Fomulario/model";
 
 export function Historico() {
-  const [executeImcQuery, { data, loading }] = useImcLazyQuery();
-
-  console.log(data, loading);
+  const [executeImcQuery, { data, loading }] = useImcLazyQuery({fetchPolicy: "network-only"});
 
   const renderAltura = (imc: Imc) => imc.altura;
   const renderPeso = (imc: Imc) => imc.peso;
