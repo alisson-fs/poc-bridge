@@ -14,13 +14,13 @@ export interface IMCFormModel {
 export function Formulario() {
   function handleSubmit(values: IMCFormModel) {
     axios
-      .post("http://localhost:8080/calcularImc", {...values})
+      .post("http://localhost:8080/calcularImc", { ...values })
       .then((response) => {
         setResultado(Number(response.data));
       });
   }
 
-  const [resultado, setResultado] = useState<number>(0);
+  const [resultado, setResultado] = useState<Number>(0);
 
   const renderForm = (formProps: FormRenderProps<IMCFormModel>) => {
     const { handleSubmit } = formProps;

@@ -29,15 +29,22 @@ export type Query = {
   historico: Array<Imc>;
 };
 
-export type ImcQueryVariables = Exact<{ [key: string]: never; }>;
+
+export type QueryHistoricoArgs = {
+  tamanho?: InputMaybe<Scalars['Int']>;
+};
+
+export type ImcQueryVariables = Exact<{
+  tamanho?: InputMaybe<Scalars['Int']>;
+}>;
 
 
 export type ImcQuery = { __typename?: 'Query', historico: Array<{ __typename?: 'Imc', id: string, altura: string, peso: string, imc: string, dt_calculo: string }> };
 
 
 export const ImcDocument = gql`
-    query Imc {
-  historico {
+    query Imc($tamanho: Int) {
+  historico(tamanho: $tamanho) {
     id
     altura
     peso
@@ -59,6 +66,7 @@ export const ImcDocument = gql`
  * @example
  * const { data, loading, error } = useImcQuery({
  *   variables: {
+ *      tamanho: // value for 'tamanho'
  *   },
  * });
  */

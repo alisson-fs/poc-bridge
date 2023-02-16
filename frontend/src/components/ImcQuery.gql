@@ -1,9 +1,9 @@
-query Imc {
-    historico {
-        id
-        altura
-        peso
-        imc
-        dt_calculo
-    }
+query Imc($tamanho: Int) {
+  historico(tamanho: $tamanho) {
+    id
+    altura
+    peso
+    imc
+    dt_calculo
+  }
 }

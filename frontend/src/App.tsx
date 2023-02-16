@@ -3,7 +3,7 @@ import React from "react";
 import "./App.css";
 import { Formulario } from "./components/Fomulario/Formulario";
 import { FraseMotivacional } from "./components/FraseMotivacional";
-import { Historico } from "./components/Historico";
+import { Historico } from "./components/Historico/Historico";
 import { FrasesMotivacionaisContextModel, FRASE_1, FRASE_2 } from "./model";
 
 export const FraseMotivacionalContext =
@@ -13,13 +13,20 @@ export const FraseMotivacionalContext =
   });
 
 function App() {
-  const theme = useTheme()
+  const theme = useTheme();
   return (
     <FraseMotivacionalContext.Provider
       value={{ frase1: FRASE_1, frase2: FRASE_2 }}
     >
       <FraseMotivacional />
-      <VFlow style={{ position: "absolute", left: "30%", top: "30%", backgroundColor:theme.pallete.surface.main }}>
+      <VFlow
+        style={{
+          position: "absolute",
+          left: "30%",
+          top: "30%",
+          backgroundColor: theme.pallete.surface.main,
+        }}
+      >
         <Heading level={2}>Calculadora de IMC</Heading>
         <HFlow hSpacing={5} alignItems="center">
           <Formulario />

@@ -7,5 +7,5 @@ type Imc {
 }
 
 type Query {
-    historico: [Imc!]!
+    historico(tamanho: Int): [Imc!]!
 }

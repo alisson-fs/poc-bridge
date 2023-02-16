@@ -8,11 +8,10 @@ import org.springframework.stereotype.Component
 @Component
 class ImcQueryResolver(private val repository: ImcRepository) : GraphQLQueryResolver {
 
-    fun historico(): MutableIterable<Imc> {
-        return repository.findAll()
+    fun historico(tamanho: Int): List<Imc> {
+        var size = tamanho
+        val all = repository.findAll()
+        if (size > all.count()) { size = all.count() }
+        return all.toList().subList(0, size)
     }
-
-    // fun historico(quantity: Int): MutableIterable<Imc> {
-    //     return repository.findWithQuantity(quantity)
-    // }
 }
