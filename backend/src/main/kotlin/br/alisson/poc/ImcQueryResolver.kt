@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageImpl
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Component
+import java.util.Date
 
 @Component
 class ImcQueryResolver(private val repository: ImcRepository) : GraphQLQueryResolver {
@@ -15,5 +16,10 @@ class ImcQueryResolver(private val repository: ImcRepository) : GraphQLQueryReso
     fun historico(tamanho: Int): Page<Imc> {
         val pageable = PageRequest.of(0, tamanho)
         return repository.findAll(pageable)
+    }
+
+    fun historicoBetween(inicio: Date, fim: Date, tamanho: Int): Page<Imc> {
+        val pageable = PageRequest.of(0, tamanho)
+        return repository.findByStartDateBetween(inicio, fim, pageable)
     }
 }
