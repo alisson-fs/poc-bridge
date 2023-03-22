@@ -22,6 +22,6 @@ class ImcResolver: GraphQLResolver<Imc> {
     }
 
     fun dt_calculo(imc: Imc): String {
-        return formatDate(imc.dt_calculo)
+        return formatDate(imc.data)
     }
 }

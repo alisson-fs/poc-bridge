@@ -5,7 +5,7 @@ type Imc {
     altura: String!
     peso: String!
     imc: String!
-    dt_calculo: String!
+    data: String!
 }
 
 type Query {

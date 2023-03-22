@@ -10,7 +10,7 @@ import java.util.Date
 @Repository
 interface ImcRepository: CrudRepository<Imc, Long> {
 
-    fun findAll(pageble: Pageable): Page<Imc>
+    fun findAll(pageable: Pageable): Page<Imc>
 
-    fun findByStartDateBetween(start: Date, end: Date, pageable: Pageable): Page<Imc>
+    fun findByDataBetween(start: Date, end: Date, pageable: Pageable): Page<Imc>
 }

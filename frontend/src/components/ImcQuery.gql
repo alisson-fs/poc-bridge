@@ -4,6 +4,6 @@ query Imc($tamanho: Int) {
     altura
     peso
     imc
-    dt_calculo
+    data
   }
 }

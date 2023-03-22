@@ -13,12 +13,13 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  Date: any;
 };
 
 export type Imc = {
   __typename?: 'Imc';
   altura: Scalars['String'];
-  dt_calculo: Scalars['String'];
+  data: Scalars['String'];
   id: Scalars['ID'];
   imc: Scalars['String'];
   peso: Scalars['String'];
@@ -27,10 +28,18 @@ export type Imc = {
 export type Query = {
   __typename?: 'Query';
   historico: Array<Imc>;
+  historicoBetween: Array<Imc>;
 };
 
 
 export type QueryHistoricoArgs = {
+  tamanho?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type QueryHistoricoBetweenArgs = {
+  fim?: InputMaybe<Scalars['Date']>;
+  inicio?: InputMaybe<Scalars['Date']>;
   tamanho?: InputMaybe<Scalars['Int']>;
 };
 
@@ -39,7 +48,7 @@ export type ImcQueryVariables = Exact<{
 }>;
 
 
-export type ImcQuery = { __typename?: 'Query', historico: Array<{ __typename?: 'Imc', id: string, altura: string, peso: string, imc: string, dt_calculo: string }> };
+export type ImcQuery = { __typename?: 'Query', historico: Array<{ __typename?: 'Imc', id: string, altura: string, peso: string, imc: string, data: string }> };
 
 
 export const ImcDocument = gql`
@@ -49,7 +58,7 @@ export const ImcDocument = gql`
     altura
     peso
     imc
-    dt_calculo
+    data
   }
 }
     `;

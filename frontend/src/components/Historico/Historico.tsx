@@ -1,9 +1,10 @@
-import { Button, DataTable, HFlow, VFlow } from "bold-ui";
+import { Button, DataTable, DateField, Heading, HFlow, VFlow } from "bold-ui";
 import { useState } from "react";
 import { Form, FormRenderProps } from "react-final-form";
 import { Imc, useImcLazyQuery } from "../../utils/__generated__/graphql";
 import { CampoTexto } from "../CampoTexto";
 import { ALTURA, PESO } from "../Fomulario/model";
+import { Periodo } from "../Periodo";
 import { TAMANHO } from "./model";
 import { validateTamanho } from "./validate";
 
@@ -31,6 +32,8 @@ export function Historico(values: HistoricoFormModel) {
     return (
       <form onSubmit={handleSubmit}>
         <VFlow>
+          <Heading level={2}>Histórico</Heading>
+          <Periodo></Periodo>
           <DataTable<Imc>
             columns={[
               {
@@ -58,12 +61,7 @@ export function Historico(values: HistoricoFormModel) {
             loading={loading}
           />
           <HFlow hSpacing={5} alignItems="center">
-            <CampoTexto
-              for={TAMANHO}
-              name={TAMANHO}
-              label="Tamanho: "
-              inline
-            />
+            <CampoTexto for={TAMANHO} name={TAMANHO} label="Tamanho: " inline />
             <Button
               onClick={() => {
                 handleSubmit();

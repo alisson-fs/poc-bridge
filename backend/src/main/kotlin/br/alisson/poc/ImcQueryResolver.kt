@@ -4,9 +4,7 @@ import br.alisson.poc.model.Imc
 import br.alisson.poc.repository.ImcRepository
 import graphql.kickstart.tools.GraphQLQueryResolver
 import org.springframework.data.domain.Page
-import org.springframework.data.domain.PageImpl
 import org.springframework.data.domain.PageRequest
-import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Component
 import java.util.Date
 
@@ -20,6 +18,6 @@ class ImcQueryResolver(private val repository: ImcRepository) : GraphQLQueryReso
 
     fun historicoBetween(inicio: Date, fim: Date, tamanho: Int): Page<Imc> {
         val pageable = PageRequest.of(0, tamanho)
-        return repository.findByStartDateBetween(inicio, fim, pageable)
+        return repository.findByDataBetween(inicio, fim, pageable)
     }
 }

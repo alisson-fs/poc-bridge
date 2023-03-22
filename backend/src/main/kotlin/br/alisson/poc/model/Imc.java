@@ -32,13 +32,13 @@ public class Imc {
 	private Double imc;
 
 	@Column(name = "dt_calculo", nullable = false)
-	private Instant dt_calculo;
+	private Instant data;
 
-	public Imc(Double altura, Double peso, Double imc, Instant dt_calculo) {
+	public Imc(Double altura, Double peso, Double imc, Instant data) {
 		this.altura = altura;
 		this.peso = peso;
 		this.imc = imc;
-		this.dt_calculo = dt_calculo;
+		this.data = data;
 	}
 
 	public Double getAltura() {
@@ -53,7 +53,7 @@ public class Imc {
 		return imc;
 	}
 
-	public Instant getDt_calculo() {
-		return dt_calculo;
+	public Instant getData() {
+		return data;
 	}
 }
