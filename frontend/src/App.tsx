@@ -21,13 +21,14 @@ function App() {
       <FraseMotivacional />
       <VFlow
         style={{
-          position: "absolute",
-          left: "30%",
-          top: "30%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
           backgroundColor: theme.pallete.surface.main,
         }}
       >
-        <Heading level={2}>Calculadora de IMC</Heading>
+        <Heading level={1}>Calculadora de IMC</Heading>
         <HFlow hSpacing={5} alignItems="center">
           <Formulario />
           <Historico />

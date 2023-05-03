@@ -1,5 +1,3 @@
-scalar Instant
-
 type Imc {
     id: ID!
     altura: String!
@@ -10,5 +8,5 @@ type Imc {
 
 type Query {
     historico(tamanho: Int): [Imc!]!
-    historicoBetween(inicio: Instant, fim: Instant, tamanho: Int): [Imc!]!
+    historicoBetween(dataInicio: String, dataFim: String, tamanho: Int): [Imc!]!
 }

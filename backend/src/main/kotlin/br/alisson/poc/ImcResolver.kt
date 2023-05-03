@@ -21,7 +21,7 @@ class ImcResolver: GraphQLResolver<Imc> {
         return ImcUtils.formatUsToBr(imc.imc)
     }
 
-    fun dt_calculo(imc: Imc): String {
-        return formatDate(imc.data)
-    }
+     fun data(imc: Imc): String {
+         return formatDate(imc.data)
+     }
 }

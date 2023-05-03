@@ -3,7 +3,7 @@ import { CampoTexto } from "../CampoTexto";
 import { Form, FormRenderProps } from "react-final-form";
 import { ALTURA, PESO } from "./model";
 import { validateIMC } from "./validate";
-import { Button, HFlow, Text, VFlow } from "bold-ui";
+import { Button, Heading, HFlow, Text, VFlow } from "bold-ui";
 import axios from "axios";
 
 export interface IMCFormModel {
@@ -27,6 +27,7 @@ export function Formulario() {
     return (
       <form onSubmit={handleSubmit}>
         <VFlow>
+          <Heading level={2}>Cálculo: </Heading>
           <CampoTexto for={ALTURA} name={ALTURA} label="Altura (cm):" />
           <CampoTexto for={PESO} name={PESO} label="Peso (kg):" />
           <Button onClick={handleSubmit} kind="primary">

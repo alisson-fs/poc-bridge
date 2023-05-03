@@ -1,28 +1,41 @@
+import { css } from "@emotion/core";
 import { DateField, Heading, HFlow } from "bold-ui";
 
-interface PeriodoProps {}
+interface PeriodoProps {
+  dataInicio?: Date;
+  dataFim?: Date;
+  handleDataInicio: (date: Date | null) => void;
+  handleDataFim: (date: Date | null) => void;
+}
 
 export function Periodo(props: PeriodoProps) {
+  const { dataInicio, dataFim, handleDataInicio, handleDataFim } = props;
+
   return (
-    <HFlow hSpacing={1} alignItems="center">
+    <>
       <Heading level={3}>Período: </Heading>
-      <DateField
-        name="inicio"
-        onChange={function noRefCheck() {}}
-        onClick={function noRefCheck() {}}
-        onFocus={function noRefCheck() {}}
-        transformTwoYearDigit={false}
-        value={new Date("2023-02-10T03:00:00.000Z")}
-      />
-      <Heading level={3}> até </Heading>
-      <DateField
-        name="fim"
-        onChange={function noRefCheck() {}}
-        onClick={function noRefCheck() {}}
-        onFocus={function noRefCheck() {}}
-        transformTwoYearDigit={false}
-        value={new Date("2023-02-10T03:00:00.000Z")}
-      />
-    </HFlow>
+      <HFlow hSpacing={1} alignItems="center">
+        <DateField
+          label="Inicio:"
+          onChange={handleDataInicio}
+          value={dataInicio}
+          inline
+          style={styles.dateFieldStyles}
+        />
+        <DateField
+          label="Fim:"
+          onChange={handleDataFim}
+          value={dataFim}
+          inline
+          style={styles.dateFieldStyles}
+        />
+      </HFlow>
+    </>
   );
 }
+
+const styles = {
+  dateFieldStyles: css`
+    width: auto;
+  `,
+};

@@ -13,7 +13,6 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  Date: any;
 };
 
 export type Imc = {
@@ -38,21 +37,30 @@ export type QueryHistoricoArgs = {
 
 
 export type QueryHistoricoBetweenArgs = {
-  fim?: InputMaybe<Scalars['Date']>;
-  inicio?: InputMaybe<Scalars['Date']>;
+  dataFim?: InputMaybe<Scalars['String']>;
+  dataInicio?: InputMaybe<Scalars['String']>;
   tamanho?: InputMaybe<Scalars['Int']>;
 };
 
-export type ImcQueryVariables = Exact<{
+export type HistoricoQueryVariables = Exact<{
   tamanho?: InputMaybe<Scalars['Int']>;
 }>;
 
 
-export type ImcQuery = { __typename?: 'Query', historico: Array<{ __typename?: 'Imc', id: string, altura: string, peso: string, imc: string, data: string }> };
+export type HistoricoQuery = { __typename?: 'Query', historico: Array<{ __typename?: 'Imc', id: string, altura: string, peso: string, imc: string, data: string }> };
+
+export type HistoricoBetweenQueryVariables = Exact<{
+  dataInicio?: InputMaybe<Scalars['String']>;
+  dataFim?: InputMaybe<Scalars['String']>;
+  tamanho?: InputMaybe<Scalars['Int']>;
+}>;
 
 
-export const ImcDocument = gql`
-    query Imc($tamanho: Int) {
+export type HistoricoBetweenQuery = { __typename?: 'Query', historicoBetween: Array<{ __typename?: 'Imc', id: string, altura: string, peso: string, imc: string, data: string }> };
+
+
+export const HistoricoDocument = gql`
+    query Historico($tamanho: Int) {
   historico(tamanho: $tamanho) {
     id
     altura
@@ -64,29 +72,70 @@ export const ImcDocument = gql`
     `;
 
 /**
- * __useImcQuery__
+ * __useHistoricoQuery__
  *
- * To run a query within a React component, call `useImcQuery` and pass it any options that fit your needs.
- * When your component renders, `useImcQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useHistoricoQuery` and pass it any options that fit your needs.
+ * When your component renders, `useHistoricoQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useImcQuery({
+ * const { data, loading, error } = useHistoricoQuery({
  *   variables: {
  *      tamanho: // value for 'tamanho'
  *   },
  * });
  */
-export function useImcQuery(baseOptions?: Apollo.QueryHookOptions<ImcQuery, ImcQueryVariables>) {
+export function useHistoricoQuery(baseOptions?: Apollo.QueryHookOptions<HistoricoQuery, HistoricoQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<ImcQuery, ImcQueryVariables>(ImcDocument, options);
+        return Apollo.useQuery<HistoricoQuery, HistoricoQueryVariables>(HistoricoDocument, options);
       }
-export function useImcLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ImcQuery, ImcQueryVariables>) {
+export function useHistoricoLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<HistoricoQuery, HistoricoQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<ImcQuery, ImcQueryVariables>(ImcDocument, options);
+          return Apollo.useLazyQuery<HistoricoQuery, HistoricoQueryVariables>(HistoricoDocument, options);
         }
-export type ImcQueryHookResult = ReturnType<typeof useImcQuery>;
-export type ImcLazyQueryHookResult = ReturnType<typeof useImcLazyQuery>;
-export type ImcQueryResult = Apollo.QueryResult<ImcQuery, ImcQueryVariables>;
+export type HistoricoQueryHookResult = ReturnType<typeof useHistoricoQuery>;
+export type HistoricoLazyQueryHookResult = ReturnType<typeof useHistoricoLazyQuery>;
+export type HistoricoQueryResult = Apollo.QueryResult<HistoricoQuery, HistoricoQueryVariables>;
+export const HistoricoBetweenDocument = gql`
+    query HistoricoBetween($dataInicio: String, $dataFim: String, $tamanho: Int) {
+  historicoBetween(dataInicio: $dataInicio, dataFim: $dataFim, tamanho: $tamanho) {
+    id
+    altura
+    peso
+    imc
+    data
+  }
+}
+    `;
+
+/**
+ * __useHistoricoBetweenQuery__
+ *
+ * To run a query within a React component, call `useHistoricoBetweenQuery` and pass it any options that fit your needs.
+ * When your component renders, `useHistoricoBetweenQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useHistoricoBetweenQuery({
+ *   variables: {
+ *      dataInicio: // value for 'dataInicio'
+ *      dataFim: // value for 'dataFim'
+ *      tamanho: // value for 'tamanho'
+ *   },
+ * });
+ */
+export function useHistoricoBetweenQuery(baseOptions?: Apollo.QueryHookOptions<HistoricoBetweenQuery, HistoricoBetweenQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<HistoricoBetweenQuery, HistoricoBetweenQueryVariables>(HistoricoBetweenDocument, options);
+      }
+export function useHistoricoBetweenLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<HistoricoBetweenQuery, HistoricoBetweenQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<HistoricoBetweenQuery, HistoricoBetweenQueryVariables>(HistoricoBetweenDocument, options);
+        }
+export type HistoricoBetweenQueryHookResult = ReturnType<typeof useHistoricoBetweenQuery>;
+export type HistoricoBetweenLazyQueryHookResult = ReturnType<typeof useHistoricoBetweenLazyQuery>;
+export type HistoricoBetweenQueryResult = Apollo.QueryResult<HistoricoBetweenQuery, HistoricoBetweenQueryVariables>;

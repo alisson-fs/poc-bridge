@@ -31,7 +31,7 @@ public class Imc {
 	@Column(name = "nu_imc", nullable = false)
 	private Double imc;
 
-	@Column(name = "dt_calculo", nullable = false)
+	@Column(name = "dt_data", nullable = false)
 	private Instant data;
 
 	public Imc(Double altura, Double peso, Double imc, Instant data) {

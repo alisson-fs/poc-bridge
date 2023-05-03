@@ -1,7 +1,11 @@
-import { Button, DataTable, DateField, Heading, HFlow, VFlow } from "bold-ui";
+import { Button, DataTable, Heading, HFlow, VFlow } from "bold-ui";
 import { useState } from "react";
 import { Form, FormRenderProps } from "react-final-form";
-import { Imc, useImcLazyQuery } from "../../utils/__generated__/graphql";
+import {
+  Imc,
+  useHistoricoBetweenLazyQuery,
+  useHistoricoLazyQuery,
+} from "../../utils/__generated__/graphql";
 import { CampoTexto } from "../CampoTexto";
 import { ALTURA, PESO } from "../Fomulario/model";
 import { Periodo } from "../Periodo";
@@ -13,27 +17,69 @@ export interface HistoricoFormModel {
 }
 
 export function Historico(values: HistoricoFormModel) {
-  function handleSubmit(values: HistoricoFormModel) {
+  const handleSubmit = (values: HistoricoFormModel) => {
     setTamanho(Number(values.tamanho));
-  }
+  };
+
+  const handleDataInicio = (date: Date | null) => {
+    setInicio(date);
+  };
+
+  const handleDataFim = (date: Date | null) => {
+    setDataFim(date);
+  };
+
+  const hasDataInicioAndDataFim = () => {
+    return inicio != null && fim != null;
+  };
+
+  const [inicio, setInicio] = useState<Date | null>(null);
+  const [fim, setDataFim] = useState<Date | null>(null);
   const [tamanho, setTamanho] = useState<number>(0);
-  const [executeImcQuery, { data, loading }] = useImcLazyQuery({
+
+  const dataInicio = inicio?.toISOString();
+  const dataFim = fim?.toISOString();
+
+  const [
+    executeHistoricoQuery,
+    { data: dataHistorico, loading: loadingHistorico },
+  ] = useHistoricoLazyQuery({
     variables: { tamanho },
     fetchPolicy: "network-only",
   });
+  const [
+    executeHistoricoBetweenQuery,
+    { data: dataHistoricoBetween, loading: loadingHistoricoBetween },
+  ] = useHistoricoBetweenLazyQuery({
+    variables: { dataInicio, dataFim, tamanho },
+    fetchPolicy: "network-only",
+  });
+
+  const rows = hasDataInicioAndDataFim()
+    ? dataHistoricoBetween?.historicoBetween
+    : dataHistorico?.historico;
+  const loading = hasDataInicioAndDataFim()
+    ? loadingHistoricoBetween
+    : loadingHistorico;
 
   const renderAltura = (imc: Imc) => imc.altura;
   const renderPeso = (imc: Imc) => imc.peso;
   const renderImc = (imc: Imc) => imc.imc;
-  const renderDataCalculo = (imc: Imc) => imc.dt_calculo;
+  const renderDataCalculo = (imc: Imc) => imc.data;
 
   const renderForm = (formProps: FormRenderProps<HistoricoFormModel>) => {
     const { handleSubmit } = formProps;
+
     return (
       <form onSubmit={handleSubmit}>
         <VFlow>
           <Heading level={2}>Histórico</Heading>
-          <Periodo></Periodo>
+          <Periodo
+            dataInicio={inicio}
+            dataFim={fim}
+            handleDataInicio={handleDataInicio}
+            handleDataFim={handleDataFim}
+          />
           <DataTable<Imc>
             columns={[
               {
@@ -53,11 +99,11 @@ export function Historico(values: HistoricoFormModel) {
               },
               {
                 header: "Data do cálculo",
-                name: "dt_calculo",
+                name: "data",
                 render: renderDataCalculo,
               },
             ]}
-            rows={data?.historico ?? []}
+            rows={rows ?? []}
             loading={loading}
           />
           <HFlow hSpacing={5} alignItems="center">
@@ -65,7 +111,9 @@ export function Historico(values: HistoricoFormModel) {
             <Button
               onClick={() => {
                 handleSubmit();
-                executeImcQuery();
+                hasDataInicioAndDataFim()
+                  ? executeHistoricoBetweenQuery()
+                  : executeHistoricoQuery();
               }}
               kind="primary"
             >
