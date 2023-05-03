@@ -19,6 +19,9 @@ export interface HistoricoFormModel {
 export function Historico(values: HistoricoFormModel) {
   const handleSubmit = (values: HistoricoFormModel) => {
     setTamanho(Number(values.tamanho));
+    hasDataInicioAndDataFim()
+      ? executeHistoricoBetweenQuery()
+      : executeHistoricoQuery();
   };
 
   const handleDataInicio = (date: Date | null) => {
@@ -111,9 +114,6 @@ export function Historico(values: HistoricoFormModel) {
             <Button
               onClick={() => {
                 handleSubmit();
-                hasDataInicioAndDataFim()
-                  ? executeHistoricoBetweenQuery()
-                  : executeHistoricoQuery();
               }}
               kind="primary"
             >
