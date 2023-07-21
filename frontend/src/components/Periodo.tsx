@@ -1,31 +1,36 @@
-import { css } from "@emotion/core";
+import { css } from "@emotion/react";
 import { DateField, Heading, HFlow } from "bold-ui";
+import { useField } from "react-final-form";
 
 interface PeriodoProps {
-  dataInicio?: Date;
-  dataFim?: Date;
-  handleDataInicio: (date: Date | null) => void;
-  handleDataFim: (date: Date | null) => void;
+  nameInicio: string;
+  nameFim: string;
 }
 
 export function Periodo(props: PeriodoProps) {
-  const { dataInicio, dataFim, handleDataInicio, handleDataFim } = props;
+  const { nameInicio, nameFim } = props;
+
+  const { input: { value: valueInicio, onChange: onChangeInicio } } = useField(nameInicio);
+
+  const { input: { value: valueFim, onChange: onChangeFim } } = useField(nameFim);
 
   return (
     <>
       <Heading level={3}>Período: </Heading>
       <HFlow hSpacing={1} alignItems="center">
         <DateField
+          name={nameInicio}
           label="Inicio:"
-          onChange={handleDataInicio}
-          value={dataInicio}
+          value={valueInicio}
+          onChange={onChangeInicio}
           inline
           style={styles.dateFieldStyles}
         />
         <DateField
+          name={nameFim}
           label="Fim:"
-          onChange={handleDataFim}
-          value={dataFim}
+          value={valueFim}
+          onChange={onChangeFim}
           inline
           style={styles.dateFieldStyles}
         />

@@ -54,3 +54,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### GraphQL ###
+/frontend/src/utils/__generated__

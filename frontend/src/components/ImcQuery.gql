@@ -1,19 +1,5 @@
-query Historico($tamanho: Int) {
-  historico(tamanho: $tamanho) {
-    id
-    altura
-    peso
-    imc
-    data
-  }
-}
-
-query HistoricoBetween($dataInicio: String, $dataFim: String, $tamanho: Int) {
-  historicoBetween(
-    dataInicio: $dataInicio
-    dataFim: $dataFim
-    tamanho: $tamanho
-  ) {
+query Historico($input: HistoricoInput) {
+  historico(input: $input) {
     id
     altura
     peso

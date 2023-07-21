@@ -11,13 +11,12 @@ import java.time.Instant
 @Component
 class ImcQueryResolver(private val repository: ImcRepository) : GraphQLQueryResolver {
 
-    fun historico(tamanho: Int): Page<Imc> {
-        val pageable = PageRequest.of(0, tamanho)
-        return repository.findAll(pageable)
-    }
-
-    fun historicoBetween(dataInicio: String, dataFim: String, tamanho: Int): Page<Imc> {
-        val pageable = PageRequest.of(0, tamanho)
-        return repository.findByDataBetween(Instant.parse(dataInicio), Instant.parse(dataFim), pageable)
+    fun historico(input: HistoricoInput): Page<Imc> {
+        val pageable = PageRequest.of(0, input.tamanho)
+        return if (input.dataInicio != null || input.dataFim != null) {
+            repository.findByDataBetween(Instant.parse(input.dataInicio), Instant.parse(input.dataFim), pageable)
+        } else {
+            repository.findAll(pageable)
+        }
     }
 }

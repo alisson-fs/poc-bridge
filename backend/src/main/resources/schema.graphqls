@@ -6,7 +6,14 @@ type Imc {
     data: String!
 }
 
-type Query {
-    historico(tamanho: Int): [Imc!]!
-    historicoBetween(dataInicio: String, dataFim: String, tamanho: Int): [Imc!]!
+input HistoricoInput {
+    dataInicio: String
+    dataFim: String
+    tamanho: Int!
 }
+
+type Query {
+    historico(input: HistoricoInput): [Imc!]!
+}
+
+
