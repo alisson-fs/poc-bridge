@@ -5,7 +5,7 @@ import {
   validateOnlyNumbers,
   validateGreaterThan,
 } from "../../validation/validate";
-import { IMCFormModel } from "./Formulario";
+import { IMCFormModel } from "./CalculoIMC";
 
 export function validateAltura(
   errors: ErrorObject<IMCFormModel>,

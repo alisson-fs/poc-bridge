@@ -2,7 +2,7 @@ import { Button, DataTable, Heading, HFlow, VFlow } from "bold-ui";
 import { Form, FormRenderProps } from "react-final-form";
 import { Imc, useHistoricoLazyQuery } from "../../utils/__generated__/graphql";
 import { CampoTexto } from "../CampoTexto";
-import { ALTURA, PESO } from "../Fomulario/model";
+import { ALTURA, PESO } from "../CalculoIMC/model";
 import { Periodo } from "../Periodo";
 import { FIM, INICIO, TAMANHO } from "./model";
 import { validateTamanho } from "./validate";

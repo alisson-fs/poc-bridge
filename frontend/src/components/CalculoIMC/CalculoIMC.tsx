@@ -11,7 +11,7 @@ export interface IMCFormModel {
   peso?: string;
 }
 
-export function Formulario() {
+export function CalculoIMC() {
   function handleSubmit(values: IMCFormModel) {
     axios
       .post("http://localhost:8080/calcularImc", { ...values })
