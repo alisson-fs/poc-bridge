@@ -6,7 +6,7 @@ import { CALCULO_IMC_PATH, HISTORICO_PATH } from "../model";
 import { CalculoIMC } from "./CalculoIMC/CalculoIMC";
 import { Historico } from "./Historico/Historico";
 
-export default function LoggedRootView() {
+export default function RootView() {
   return (
     <Routes>
       <Route path="/" element={<App />} />

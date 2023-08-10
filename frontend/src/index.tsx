@@ -4,7 +4,7 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { BrowserRouter } from "react-router-dom";
-import LoggedRootView from "./components/LoggedRootView";
+import RootView from "./components/RootView";
 
 const client = new ApolloClient({
   uri: "http://localhost:8080/graphql",
@@ -17,7 +17,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <ApolloProvider client={client}>
-        <LoggedRootView />
+        <RootView />
       </ApolloProvider>
     </BrowserRouter>
   </React.StrictMode>
