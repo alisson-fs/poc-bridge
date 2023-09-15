@@ -10,14 +10,18 @@ interface PeriodoProps {
 export function Periodo(props: PeriodoProps) {
   const { nameInicio, nameFim } = props;
 
-  const { input: { value: valueInicio, onChange: onChangeInicio } } = useField(nameInicio);
+  const {
+    input: { value: valueInicio, onChange: onChangeInicio },
+  } = useField(nameInicio);
 
-  const { input: { value: valueFim, onChange: onChangeFim } } = useField(nameFim);
+  const {
+    input: { value: valueFim, onChange: onChangeFim },
+  } = useField(nameFim);
 
   return (
     <>
-      <Heading level={3}>Período: </Heading>
       <HFlow hSpacing={1} alignItems="center">
+        <Heading level={3}>Período: </Heading>
         <DateField
           name={nameInicio}
           label="Inicio:"

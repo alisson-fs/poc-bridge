@@ -1,14 +1,12 @@
-import { Button, Heading, useTheme, VFlow } from "bold-ui";
+import { Heading, useTheme, VFlow } from "bold-ui";
 import React from "react";
-import { Link } from "react-router-dom";
 import "./App.css";
+import { CalculoIMC } from "./components/CalculoIMC/CalculoIMC";
 import { FraseMotivacional } from "./components/FraseMotivacional";
 import {
-  CALCULO_IMC_PATH,
   FrasesMotivacionaisContextModel,
   FRASE_1,
   FRASE_2,
-  HISTORICO_PATH,
 } from "./model";
 
 export const FraseMotivacionalContext =
@@ -35,14 +33,7 @@ function App() {
         }}
       >
         <Heading level={1}>Calculadora de IMC</Heading>
-        <VFlow>
-          <Link to={CALCULO_IMC_PATH}>
-            <Button kind="primary">Calcular IMC</Button>
-          </Link>
-          <Link to={HISTORICO_PATH}>
-            <Button kind="primary">Histórico de cálculos</Button>
-          </Link>
-        </VFlow>
+          <CalculoIMC />
       </VFlow>
     </FraseMotivacionalContext.Provider>
   );
