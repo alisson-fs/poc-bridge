@@ -6,7 +6,6 @@ import graphql.kickstart.tools.GraphQLQueryResolver
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.stereotype.Component
-import java.time.Instant
 
 @Component
 class ImcQueryResolver(private val repository: ImcRepository) : GraphQLQueryResolver {
@@ -14,7 +13,7 @@ class ImcQueryResolver(private val repository: ImcRepository) : GraphQLQueryReso
     fun historico(input: HistoricoInput): Page<Imc> {
         val pageable = PageRequest.of(0, input.tamanho)
         return if (input.dataInicio != null || input.dataFim != null) {
-            repository.findByDataBetween(Instant.parse(input.dataInicio), Instant.parse(input.dataFim), pageable)
+            repository.findByDataBetween(input.dataInicio, input.dataFim, pageable)
         } else {
             repository.findAll(pageable)
         }

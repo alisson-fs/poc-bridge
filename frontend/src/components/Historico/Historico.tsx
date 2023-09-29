@@ -15,11 +15,12 @@ export interface HistoricoFormModel {
 
 export function Historico() {
   const handleSubmit = (values: HistoricoFormModel) => {
+    console.log(values);
     executeHistoricoQuery({
       variables: {
         input: {
-          dataInicio: values?.dataInicio?.toISOString(),
-          dataFim: values?.dataFim?.toISOString(),
+          dataInicio: values.dataInicio?.valueOf(),
+          dataFim: values.dataFim?.valueOf(),
           tamanho: values.tamanho,
         },
       },

@@ -13,11 +13,12 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  Instant: any;
 };
 
 export type HistoricoInput = {
-  dataFim?: InputMaybe<Scalars['String']>;
-  dataInicio?: InputMaybe<Scalars['String']>;
+  dataFim?: InputMaybe<Scalars['Instant']>;
+  dataInicio?: InputMaybe<Scalars['Instant']>;
   tamanho: Scalars['Int'];
 };
 
@@ -37,11 +38,11 @@ export type Query = {
 
 
 export type QueryHistoricoArgs = {
-  input?: InputMaybe<HistoricoInput>;
+  input: HistoricoInput;
 };
 
 export type HistoricoQueryVariables = Exact<{
-  input?: InputMaybe<HistoricoInput>;
+  input: HistoricoInput;
 }>;
 
 
@@ -49,7 +50,7 @@ export type HistoricoQuery = { __typename?: 'Query', historico: Array<{ __typena
 
 
 export const HistoricoDocument = gql`
-    query Historico($input: HistoricoInput) {
+    query Historico($input: HistoricoInput!) {
   historico(input: $input) {
     id
     altura
@@ -76,7 +77,7 @@ export const HistoricoDocument = gql`
  *   },
  * });
  */
-export function useHistoricoQuery(baseOptions?: Apollo.QueryHookOptions<HistoricoQuery, HistoricoQueryVariables>) {
+export function useHistoricoQuery(baseOptions: Apollo.QueryHookOptions<HistoricoQuery, HistoricoQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<HistoricoQuery, HistoricoQueryVariables>(HistoricoDocument, options);
       }
