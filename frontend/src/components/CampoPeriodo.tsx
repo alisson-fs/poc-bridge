@@ -2,12 +2,12 @@ import { css } from "@emotion/react";
 import { DateField, Heading, HFlow } from "bold-ui";
 import { useField } from "react-final-form";
 
-interface PeriodoProps {
+interface CampoPeriodoProps {
   nameInicio: string;
   nameFim: string;
 }
 
-export function Periodo(props: PeriodoProps) {
+export function CampoPeriodo(props: CampoPeriodoProps) {
   const { nameInicio, nameFim } = props;
 
   const { input: { value: valueInicio, onChange: onChangeInicio } } = useField(nameInicio);

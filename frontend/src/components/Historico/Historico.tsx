@@ -1,9 +1,9 @@
 import { Button, DataTable, Heading, HFlow, VFlow } from "bold-ui";
 import { Form, FormRenderProps } from "react-final-form";
 import { Imc, useHistoricoLazyQuery } from "../../utils/__generated__/graphql";
+import { CampoPeriodo } from "../CampoPeriodo";
 import { CampoTexto } from "../CampoTexto";
 import { ALTURA, PESO } from "../Fomulario/model";
-import { Periodo } from "../Periodo";
 import { FIM, INICIO, TAMANHO } from "./model";
 import { validateTamanho } from "./validate";
 
@@ -12,6 +12,11 @@ export interface HistoricoFormModel {
   dataFim?: Date;
   tamanho: number;
 }
+
+const renderAltura = (imc: Imc) => imc.altura;
+const renderPeso = (imc: Imc) => imc.peso;
+const renderImc = (imc: Imc) => imc.imc;
+const renderDataCalculo = (imc: Imc) => imc.data;
 
 export function Historico() {
   const handleSubmit = (values: HistoricoFormModel) => {
@@ -24,16 +29,11 @@ export function Historico() {
           tamanho: values.tamanho,
         },
       },
-      fetchPolicy: "network-only",
+      fetchPolicy: "cache-and-network",
     });
   };
 
   const [executeHistoricoQuery, { data, loading }] = useHistoricoLazyQuery({});
-
-  const renderAltura = (imc: Imc) => imc.altura;
-  const renderPeso = (imc: Imc) => imc.peso;
-  const renderImc = (imc: Imc) => imc.imc;
-  const renderDataCalculo = (imc: Imc) => imc.data;
 
   const renderForm = (formProps: FormRenderProps<HistoricoFormModel>) => {
     const { handleSubmit } = formProps;
@@ -41,7 +41,7 @@ export function Historico() {
       <form onSubmit={handleSubmit}>
         <VFlow>
           <Heading level={2}>Histórico</Heading>
-          <Periodo nameInicio={INICIO} nameFim={FIM} />
+          <CampoPeriodo nameInicio={INICIO} nameFim={FIM} />
           <DataTable<Imc>
             columns={[
               {
@@ -70,12 +70,7 @@ export function Historico() {
           />
           <HFlow hSpacing={5} alignItems="center">
             <CampoTexto for={TAMANHO} name={TAMANHO} label="Tamanho: " inline />
-            <Button
-              onClick={() => {
-                handleSubmit();
-              }}
-              kind="primary"
-            >
+            <Button type="submit" kind="primary">
               Gerar histórico
             </Button>
           </HFlow>
