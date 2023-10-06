@@ -1,18 +1,13 @@
 import { Button, DataTable, Heading, HFlow, useTheme, VFlow } from "bold-ui";
 import { Form, FormRenderProps } from "react-final-form";
+import { HISTORICO_PATH } from "../../model";
 import { useRouteMatch, useHistory } from "react-router-dom";
 import { Imc, useHistoricoLazyQuery } from "../../utils/__generated__/graphql";
+import { ALTURA, PESO } from "../CalculoIMC/model";
 import { CampoPeriodo } from "../CampoPeriodo";
 import { CampoTexto } from "../CampoTexto";
-<<<<<<< HEAD
-import { ALTURA, PESO } from "../CalculoIMC/model";
-import { Periodo } from "../Periodo";
-=======
-import { ALTURA, PESO } from "../Fomulario/model";
->>>>>>> graphql
 import { FIM, INICIO, TAMANHO } from "./model";
 import { validateTamanho } from "./validate";
-import { HISTORICO_PATH } from "../../model";
 
 export interface HistoricoFormModel {
   dataInicio?: Date;
@@ -45,18 +40,10 @@ export function Historico() {
 
   const [executeHistoricoQuery, { data, loading }] = useHistoricoLazyQuery({});
 
-<<<<<<< HEAD
   const handleClose = () => {
     history.push(url.replace(HISTORICO_PATH, ""));
   };
 
-  const renderAltura = (imc: Imc) => imc.altura;
-  const renderPeso = (imc: Imc) => imc.peso;
-  const renderImc = (imc: Imc) => imc.imc;
-  const renderDataCalculo = (imc: Imc) => imc.data;
-
-=======
->>>>>>> graphql
   const renderForm = (formProps: FormRenderProps<HistoricoFormModel>) => {
     const { handleSubmit } = formProps;
     return (
