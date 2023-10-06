@@ -1,4 +1,4 @@
-query Historico($input: HistoricoInput) {
+query Historico($input: HistoricoInput!) {
   historico(input: $input) {
     id
     altura

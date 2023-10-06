@@ -12,5 +12,5 @@ interface ImcRepository: CrudRepository<Imc, Long> {
 
     fun findAll(pageable: Pageable): Page<Imc>
 
-    fun findByDataBetween(start: Instant, end: Instant, pageable: Pageable): Page<Imc>
+    fun findByDataBetween(start: Instant?, end: Instant?, pageable: Pageable): Page<Imc>
 }
