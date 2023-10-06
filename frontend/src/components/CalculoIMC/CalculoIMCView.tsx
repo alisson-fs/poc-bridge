@@ -13,7 +13,7 @@ export interface IMCFormModel {
   peso?: string;
 }
 
-export function CalculoIMC() {
+export function CalculoIMCView() {
   function handleSubmit(values: IMCFormModel) {
     axios
       .post("http://localhost:8080/calcularImc", { ...values })
@@ -21,12 +21,12 @@ export function CalculoIMC() {
         setResultado(Number(response.data));
       });
   }
-  const { url } = useRouteMatch()
-  const history = useHistory()
+  const { url } = useRouteMatch();
+  const history = useHistory();
 
   const [resultado, setResultado] = useState<Number>(0);
 
-  const handleClick = () => history.push(`${url}${HISTORICO_PATH}`)
+  const handleClick = () => history.push(`${url}${HISTORICO_PATH}`);
 
   const renderForm = (formProps: FormRenderProps<IMCFormModel>) => {
     const { handleSubmit } = formProps;
@@ -40,7 +40,9 @@ export function CalculoIMC() {
             <Button onClick={handleSubmit} kind="primary">
               Calcular
             </Button>
-            <Button kind="primary" onClick={handleClick}>Histórico de cálculos</Button>
+            <Button kind="primary" onClick={handleClick}>
+              Histórico de cálculos
+            </Button>
           </HFlow>
         </VFlow>
       </form>

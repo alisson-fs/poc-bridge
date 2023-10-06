@@ -1,10 +1,10 @@
 import * as validators from "../../../validation/validate";
-import { HistoricoFormModel } from "../Historico";
+import { HistoricoViewFormModel } from "../HistoricoView";
 import { validateTamanho } from "../validate";
 
 describe("validate", () => {
   describe("validateTamanho", () => {
-    const values: HistoricoFormModel = { tamanho: 10 };
+    const values: HistoricoViewFormModel = { tamanho: 10 };
 
     it("quando validateTamanho for chamado, deve chamar o validateRequired com os parametros esperados", () => {
       const spy = jest.spyOn(validators, "validateRequired");

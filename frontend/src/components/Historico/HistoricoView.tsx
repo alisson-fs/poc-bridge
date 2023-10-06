@@ -9,7 +9,7 @@ import { CampoTexto } from "../CampoTexto";
 import { FIM, INICIO, TAMANHO } from "./model";
 import { validateTamanho } from "./validate";
 
-export interface HistoricoFormModel {
+export interface HistoricoViewFormModel {
   dataInicio?: Date;
   dataFim?: Date;
   tamanho: number;
@@ -20,8 +20,8 @@ const renderPeso = (imc: Imc) => imc.peso;
 const renderImc = (imc: Imc) => imc.imc;
 const renderDataCalculo = (imc: Imc) => imc.data;
 
-export function Historico() {
-  const handleSubmit = (values: HistoricoFormModel) => {
+export function HistoricoView() {
+  const handleSubmit = (values: HistoricoViewFormModel) => {
     console.log(values);
     executeHistoricoQuery({
       variables: {
@@ -40,11 +40,11 @@ export function Historico() {
 
   const [executeHistoricoQuery, { data, loading }] = useHistoricoLazyQuery({});
 
-  const handleClose = () => {
+  const handleGoBack = () => {
     history.push(url.replace(HISTORICO_PATH, ""));
   };
 
-  const renderForm = (formProps: FormRenderProps<HistoricoFormModel>) => {
+  const renderForm = (formProps: FormRenderProps<HistoricoViewFormModel>) => {
     const { handleSubmit } = formProps;
     return (
       <form onSubmit={handleSubmit}>
@@ -87,7 +87,7 @@ export function Historico() {
           />
           <CampoTexto for={TAMANHO} name={TAMANHO} label="Tamanho: " inline />
           <HFlow hSpacing={5} alignItems="center">
-            <Button kind="primary" onClick={handleClose}>
+            <Button kind="primary" onClick={handleGoBack}>
               Voltar
             </Button>
             <Button type="submit" kind="primary">
@@ -101,7 +101,7 @@ export function Historico() {
 
   return (
     <>
-      <Form<HistoricoFormModel>
+      <Form<HistoricoViewFormModel>
         onSubmit={handleSubmit}
         render={renderForm}
         validate={validateTamanho}

@@ -1,13 +1,9 @@
 import { Heading, useTheme, VFlow } from "bold-ui";
 import React from "react";
 import "./App.css";
-import { CalculoIMC } from "./components/CalculoIMC/CalculoIMC";
+import { CalculoIMCView } from "./components/CalculoIMC/CalculoIMCView";
 import { FraseMotivacional } from "./components/FraseMotivacional";
-import {
-  FrasesMotivacionaisContextModel,
-  FRASE_1,
-  FRASE_2,
-} from "./model";
+import { FrasesMotivacionaisContextModel, FRASE_1, FRASE_2 } from "./model";
 
 export const FraseMotivacionalContext =
   React.createContext<FrasesMotivacionaisContextModel>({
@@ -33,7 +29,7 @@ function App() {
         }}
       >
         <Heading level={1}>Calculadora de IMC</Heading>
-          <CalculoIMC />
+        <CalculoIMCView />
       </VFlow>
     </FraseMotivacionalContext.Provider>
   );

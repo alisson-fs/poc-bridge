@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import App from "../App";
 import { HISTORICO_PATH } from "../model";
-import { Historico } from "./Historico/Historico";
+import { HistoricoView } from "./Historico/HistoricoView";
 
 export default function RootView() {
   const { url } = useRouteMatch();
@@ -13,7 +13,7 @@ export default function RootView() {
         <App />
       </Route>
       <Route path={`${url}${HISTORICO_PATH}`}>
-        <Historico />
+        <HistoricoView />
       </Route>
     </Switch>
   );

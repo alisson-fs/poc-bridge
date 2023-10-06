@@ -1,5 +1,5 @@
 import { ErrorObject } from "../../../validation/model";
-import { IMCFormModel } from "../CalculoIMC";
+import { IMCFormModel } from "../CalculoIMCView";
 import * as validators from "../../../validation/validate";
 import { validateAltura, validatePeso } from "../validate";
 
