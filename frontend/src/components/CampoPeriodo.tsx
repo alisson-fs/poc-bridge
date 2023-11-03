@@ -12,11 +12,11 @@ export function CampoPeriodo(props: CampoPeriodoProps) {
 
   const {
     input: { value: valueInicio, onChange: onChangeInicio },
-  } = useField(nameInicio);
+  } = useField(nameInicio, { subscription: { value: true } });
 
   const {
     input: { value: valueFim, onChange: onChangeFim },
-  } = useField(nameFim);
+  } = useField(nameFim, { subscription: { value: true } });
 
   return (
     <Fragment>

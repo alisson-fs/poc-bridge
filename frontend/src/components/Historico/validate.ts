@@ -4,11 +4,11 @@ import {
   validateOnlyNumbers,
   validateRequired,
 } from "../../validation/validate";
-import { HistoricoViewFormModel } from "./HistoricoView";
+import { HistoricoFormModel } from "./HistoricoView";
 import { TAMANHO } from "./model";
 
-export function validateTamanho(values: HistoricoViewFormModel) {
-  var errors: ErrorObject<HistoricoViewFormModel> = {};
+export function validateTamanho(values: HistoricoFormModel) {
+  var errors: ErrorObject<HistoricoFormModel> = {};
   errors = validateRequired(errors, values, TAMANHO);
   errors = validateOnlyNumbers(errors, values, TAMANHO);
   errors = validateGreaterThan(errors, values, TAMANHO, 0);

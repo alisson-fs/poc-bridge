@@ -9,7 +9,7 @@ import { CampoTexto } from "../CampoTexto";
 import { FIM, INICIO, TAMANHO } from "./model";
 import { validateTamanho } from "./validate";
 
-export interface HistoricoViewFormModel {
+export interface HistoricoFormModel {
   dataInicio?: Date;
   dataFim?: Date;
   tamanho: number;
@@ -21,7 +21,7 @@ const renderImc = (imc: Imc) => imc.imc;
 const renderDataCalculo = (imc: Imc) => imc.data;
 
 export function HistoricoView() {
-  const handleSubmit = (values: HistoricoViewFormModel) => {
+  const handleSubmit = (values: HistoricoFormModel) => {
     executeHistoricoQuery({
       variables: {
         input: {
@@ -43,7 +43,7 @@ export function HistoricoView() {
     history.push(url.replace(HISTORICO_PATH, ""));
   };
 
-  const renderForm = (formProps: FormRenderProps<HistoricoViewFormModel>) => {
+  const renderForm = (formProps: FormRenderProps<HistoricoFormModel>) => {
     const { handleSubmit } = formProps;
     return (
       <form onSubmit={handleSubmit}>
@@ -100,7 +100,7 @@ export function HistoricoView() {
 
   return (
     <>
-      <Form<HistoricoViewFormModel>
+      <Form<HistoricoFormModel>
         onSubmit={handleSubmit}
         render={renderForm}
         validate={validateTamanho}
