@@ -10,9 +10,13 @@ interface CampoPeriodoProps {
 export function CampoPeriodo(props: CampoPeriodoProps) {
   const { nameInicio, nameFim } = props;
 
-  const { input: { value: valueInicio, onChange: onChangeInicio } } = useField(nameInicio);
+  const {
+    input: { value: valueInicio, onChange: onChangeInicio },
+  } = useField(nameInicio, { subscription: { value: true } });
 
-  const { input: { value: valueFim, onChange: onChangeFim } } = useField(nameFim);
+  const {
+    input: { value: valueFim, onChange: onChangeFim },
+  } = useField(nameFim, { subscription: { value: true } });
 
   return (
     <Fragment>

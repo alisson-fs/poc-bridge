@@ -1,5 +1,5 @@
 import * as validators from "../../../validation/validate";
-import { HistoricoFormModel } from "../Historico";
+import { HistoricoFormModel } from "../HistoricoView";
 import { validateTamanho } from "../validate";
 
 describe("validate", () => {

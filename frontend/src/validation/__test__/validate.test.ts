@@ -1,4 +1,4 @@
-import { IMCFormModel } from "../../components/Fomulario/Formulario";
+import { IMCFormModel } from "../../components/CalculoIMC/CalculoIMCView";
 import { ErrorObject, GREATER_THAN, ONLY_NUMBERS, REQUIRED } from "../model";
 import {
   validateGreaterThan,

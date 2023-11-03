@@ -4,7 +4,7 @@ import {
   validateOnlyNumbers,
   validateRequired,
 } from "../../validation/validate";
-import { HistoricoFormModel } from "./Historico";
+import { HistoricoFormModel } from "./HistoricoView";
 import { TAMANHO } from "./model";
 
 export function validateTamanho(values: HistoricoFormModel) {
