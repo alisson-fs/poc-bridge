@@ -5,10 +5,11 @@ interface CampoTextoProps {
   for: string;
   label: string;
   name: string;
+  inline?: boolean;
 }
 
 export function CampoTexto(props: CampoTextoProps) {
-  const { name, label } = props;
+  const { name, label, inline = false } = props;
   const {
     meta: { error },
     input: { value, onChange },
@@ -20,6 +21,7 @@ export function CampoTexto(props: CampoTextoProps) {
       value={value}
       onChange={onChange}
       clearable={false}
+      inline={inline}
       required
     />
   );

@@ -1,0 +1,19 @@
+type Imc {
+    id: ID!
+    altura: String!
+    peso: String!
+    imc: String!
+    data: String!
+}
+
+scalar Instant
+
+input HistoricoInput {
+    dataInicio: Instant
+    dataFim: Instant
+    tamanho: Int!
+}
+
+type Query {
+    historico(input: HistoricoInput!): [Imc!]!
+}

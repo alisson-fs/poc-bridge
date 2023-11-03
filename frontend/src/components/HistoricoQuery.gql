@@ -1,0 +1,9 @@
+query Historico($input: HistoricoInput!) {
+  historico(input: $input) {
+    id
+    altura
+    peso
+    imc
+    data
+  }
+}
