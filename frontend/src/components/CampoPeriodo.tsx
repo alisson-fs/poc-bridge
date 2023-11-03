@@ -1,5 +1,5 @@
-import { css } from "@emotion/react";
 import { DateField, Heading, HFlow } from "bold-ui";
+import { Fragment } from "react";
 import { useField } from "react-final-form";
 
 interface CampoPeriodoProps {
@@ -19,16 +19,18 @@ export function CampoPeriodo(props: CampoPeriodoProps) {
   } = useField(nameFim);
 
   return (
-    <>
+    <Fragment>
+      <Heading level={3}>Período: </Heading>
       <HFlow hSpacing={1} alignItems="center">
-        <Heading level={3}>Período: </Heading>
         <DateField
           name={nameInicio}
           label="Inicio:"
           value={valueInicio}
           onChange={onChangeInicio}
           inline
-          style={styles.dateFieldStyles}
+          style={{
+            width: "auto" 
+          }}
         />
         <DateField
           name={nameFim}
@@ -36,15 +38,11 @@ export function CampoPeriodo(props: CampoPeriodoProps) {
           value={valueFim}
           onChange={onChangeFim}
           inline
-          style={styles.dateFieldStyles}
+          style={{
+            width: "auto" 
+          }}
         />
       </HFlow>
-    </>
+    </Fragment>
   );
 }
-
-const styles = {
-  dateFieldStyles: css`
-    width: auto;
-  `,
-};

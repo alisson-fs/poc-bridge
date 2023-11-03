@@ -7,6 +7,8 @@ import kotlin.math.pow
 
 class ImcUtils {
     companion object {
+        private val pattern = "dd/MM/yyyy HH:mm"
+
         fun calcular(altura: Double, peso: Double): Double {
             return peso / (altura / 100.0).pow(2.0)
         }
@@ -17,7 +19,7 @@ class ImcUtils {
         }
 
         fun formatDate(date: Instant): String {
-            val pattern = "dd/MM/yyyy HH:mm"
+            // val pattern = "dd/MM/yyyy HH:mm"
             val formatter = DateTimeFormatter.ofPattern(pattern).withZone(ZoneId.systemDefault())
             return formatter.format(date)
         }
