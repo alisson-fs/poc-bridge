@@ -20,7 +20,6 @@ const renderDataCalculo = (imc: Imc) => imc.data;
 
 export function Historico() {
   const handleSubmit = (values: HistoricoFormModel) => {
-    console.log(values);
     executeHistoricoQuery({
       variables: {
         input: {
