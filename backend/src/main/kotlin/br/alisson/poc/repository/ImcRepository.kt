@@ -18,12 +18,12 @@ class ImcRepository(private val em: EntityManager,) {
         em.persist(imc)
     }
 
-    fun findAll(pageable: Pageable): Page<Imc> {
+    fun getAllImcs(pageable: Pageable): Page<Imc> {
         val results = JPAQueryFactory(em).selectFrom(imc1).fetch()
         return PageImpl(results, pageable, results.size.toLong())
     }
 
-    fun findByDataBetween(start: Instant?, end: Instant?, pageable: Pageable): Page<Imc> {
+    fun getImcByDataBetween(start: Instant?, end: Instant?, pageable: Pageable): Page<Imc> {
         val results = JPAQueryFactory(em).selectFrom(imc1).where(imc1.data.between(start, end)).fetch()
         return PageImpl(results, pageable, results.size.toLong())
     }

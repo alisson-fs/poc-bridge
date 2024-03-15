@@ -22,7 +22,7 @@ class ImcService(private val repository: ImcRepository) {
 
     private fun mostrarTbImc(){
         val pageable = PageRequest.of(0, Int.MAX_VALUE)
-        val tbImc = repository.findAll(pageable).toString()
+        val tbImc = repository.getAllImcs(pageable).toString()
         logger.debug(tbImc)
     }
 }
