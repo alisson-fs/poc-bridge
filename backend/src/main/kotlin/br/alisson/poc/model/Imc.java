@@ -2,36 +2,34 @@ package br.alisson.poc.model;
 
 import java.time.Instant;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @ToString
 @NoArgsConstructor
 @Entity
-@Table(name = "tb_imc")
 public class Imc {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name = "co_imc", nullable = false, unique = true)
+	@NotNull
 	private Long id;
 
-	@Column(name = "nu_altura", nullable = false)
+	@NotNull
 	private Double altura;
 
-	@Column(name = "nu_peso", nullable = false)
+	@NotNull
 	private Double peso;
 
-	@Column(name = "nu_imc", nullable = false)
+	@NotNull
 	private Double imc;
 
-	@Column(name = "dt_data", nullable = false)
+	@NotNull
 	private Instant data;
 
 	public Imc(Double altura, Double peso, Double imc, Instant data) {
