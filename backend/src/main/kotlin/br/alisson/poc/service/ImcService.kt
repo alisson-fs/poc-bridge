@@ -4,6 +4,7 @@ import br.alisson.poc.model.Imc
 import br.alisson.poc.repository.ImcRepository
 import br.alisson.poc.util.ImcUtils
 import org.slf4j.LoggerFactory
+import org.springframework.data.domain.PageRequest
 import org.springframework.stereotype.Service
 import java.time.Instant
 
@@ -20,7 +21,8 @@ class ImcService(private val repository: ImcRepository) {
     }
 
     private fun mostrarTbImc(){
-        val tbImc = repository.findAll().toString()
+        val pageable = PageRequest.of(0, Int.MAX_VALUE)
+        val tbImc = repository.getAllImcs(pageable).toString()
         logger.debug(tbImc)
     }
 }

@@ -13,9 +13,9 @@ class ImcQueryResolver(private val repository: ImcRepository) : GraphQLQueryReso
     fun historico(input: HistoricoInput): Page<Imc> {
         val pageable = PageRequest.of(0, input.tamanho)
         return if (input.dataInicio != null || input.dataFim != null) {
-            repository.findByDataBetween(input.dataInicio, input.dataFim, pageable)
+            repository.getImcByDataBetween(input.dataInicio, input.dataFim, pageable)
         } else {
-            repository.findAll(pageable)
+            repository.getAllImcs(pageable)
         }
     }
 }
